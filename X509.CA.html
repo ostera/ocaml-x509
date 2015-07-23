@@ -95,8 +95,11 @@ The raw request info of a
       certificate.  The <code class="code">private</code> key is used to sign the certificate,
       the <code class="code">issuer</code> is recorded in the certificate.  The digest
       defaults to <code class="code">`SHA256</code>.  The <code class="code">serial</code> defaults to a random value
-      between 1 and 2^64.  Please note that the extensions in the
-      <code class="code">signing_request</code> are ignored, you can pass them using:
+      between 1 and 2^64.  Certificate version is always 3.  Please
+      note that the extensions in the <code class="code">signing_request</code> are ignored,
+      you can pass them using:
+<p>
+
 <pre class="codepre"><code class="code">match
   try Some (List.find (function `Extensions _ -&gt; true | _ -&gt; false) (info csr).extensions)
   with Not_found -&gt; None
