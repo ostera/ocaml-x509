@@ -58,20 +58,21 @@ The result of a validation: either success (optionally returning the used trust 
 
 
 <pre><span id="VALverify_chain_of_trust"><span class="keyword">val</span> verify_chain_of_trust</span> : <code class="type">?host:<a href="X509.html#TYPEhost">X509.host</a> -><br>       ?time:float -> anchors:<a href="X509.html#TYPEt">X509.t</a> list -> <a href="X509.html#TYPEt">X509.t</a> list -> <a href="X509.Validation.html#TYPEresult">result</a></code></pre><div class="info ">
-<code class="code">verify_chain_of_trust ?host ?time ~anchors certificates</code> is
+<code class="code">verify_chain_of_trust ~host ~time ~anchors certificates</code> is
       <code class="code">result</code>, where the <code class="code">certificates</code> are verified using the
-      algorithm from RFC5280: The validity period of the given
-      certificates is checked against the <code class="code">time</code>.  The X509v3
-      extensions of the <code class="code">stack</code> are checked, then a chain of trust
-      from some <code class="code">anchors</code> to the server certificate is validated.  The
-      path length constraints are checked.  Finally, the server
-      certificate is checked to contain the given <code class="code">host</code>, using
-      <a href="X509.html#VALhostnames"><code class="code">X509.hostnames</code></a>.  The returned certificate is the root of the
-      chain, a member of the given list of <code class="code">anchors</code>.<br>
+      algorithm from
+      <a href="https://tools.ietf.org/html/rfc5280#section-6.1">RFC5280</a>: The
+      validity period of the given certificates is checked against the
+      <code class="code">time</code>.  The X509v3 extensions of the <code class="code">stack</code> are checked, then
+      a chain of trust from some <code class="code">anchors</code> to the server certificate
+      is validated.  The path length constraints are checked.
+      Finally, the server certificate is checked to contain the given
+      <code class="code">host</code>, using <a href="X509.html#VALhostnames"><code class="code">X509.hostnames</code></a>.  The returned certificate is the
+      root of the chain, a member of the given list of <code class="code">anchors</code>.<br>
 </div>
 
 <pre><span id="VALtrust_fingerprint"><span class="keyword">val</span> trust_fingerprint</span> : <code class="type">?host:<a href="X509.html#TYPEhost">X509.host</a> -><br>       ?time:float -><br>       hash:Nocrypto.Hash.hash -><br>       fingerprints:(string * Cstruct.t) list -><br>       <a href="X509.html#TYPEt">X509.t</a> list -> <a href="X509.Validation.html#TYPEresult">result</a></code></pre><div class="info ">
-<code class="code">trust_fingerprint ?time ~hash ~fingerprints certificates</code> is
+<code class="code">trust_fingerprint ~time ~hash ~fingerprints certificates</code> is
       <code class="code">result</code>, the first element of <code class="code">certificates</code> is verified
       against the given <code class="code">fingerprints</code> map (hostname to fingerprint).
       The certificate has to be valid in the given <code class="code">time</code>.  If a
@@ -81,9 +82,11 @@ The result of a validation: either success (optionally returning the used trust 
 </div>
 
 <pre><span id="VALvalid_cas"><span class="keyword">val</span> valid_cas</span> : <code class="type">?time:float -> <a href="X509.html#TYPEt">X509.t</a> list -> <a href="X509.html#TYPEt">X509.t</a> list</code></pre><div class="info ">
-<code class="code">valid_cas ?time certificates</code> is <code class="code">valid_certificates</code>, only
+<code class="code">valid_cas ~time certificates</code> is <code class="code">valid_certificates</code>, only
       those certificates whose validity period matches the given time,
-      and the certificate must be eligible for acting as a CA (basic
-      constraints must be true).<br>
+      and the certificate must be eligible for acting as a CA
+      (self-signed, if X.509v3, the basic constraint extension must be
+      present and true, and the key usage extension must contain
+      keyCertSign).<br>
 </div>
 </body></html>

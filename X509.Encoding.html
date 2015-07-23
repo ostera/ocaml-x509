@@ -27,7 +27,7 @@ Encodings<br>
 
 <pre><span id="VALparse"><span class="keyword">val</span> parse</span> : <code class="type">Cstruct.t -> <a href="X509.html#TYPEt">X509.t</a> option</code></pre><div class="info ">
 <code class="code">parse cstruct</code> is <code class="code">certificate option</code>, the ASN.1 decoded
-      <code class="code">certificate</code> or <code class="code">None</code><br>
+      <code class="code">certificate</code> or <code class="code">None</code>.<br>
 </div>
 
 <pre><span id="VALcs_of_cert"><span class="keyword">val</span> cs_of_cert</span> : <code class="type"><a href="X509.html#TYPEt">X509.t</a> -> Cstruct.t</code></pre><div class="info ">
@@ -56,6 +56,6 @@ Encodings<br>
 </div>
 
 <pre><span class="keyword">module</span> <a href="X509.Encoding.Pem.html">Pem</a>: <code class="code">sig</code> <a href="X509.Encoding.Pem.html">..</a> <code class="code">end</code></pre><div class="info">
-A parser for PEM files
+Parser and unparser of PEM files
 </div>
 </body></html>
