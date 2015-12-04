@@ -41,7 +41,10 @@ An authenticator <code class="code">a</code> is a function type which takes a ho
       certificate chain. This is an implementation of the algorithm
       described in
       <a href="https://tools.ietf.org/html/rfc5280#section-6.1">RFC 5280</a>,
-      using <a href="X509.Validation.html#VALverify_chain_of_trust"><code class="code">X509.Validation.verify_chain_of_trust</code></a>.<br>
+      using <a href="X509.Validation.html#VALverify_chain_of_trust"><code class="code">X509.Validation.verify_chain_of_trust</code></a>.  The given trust
+      anchors are not checked to be valid trust anchors any further
+      (you have to do this manually with <a href="X509.Validation.html#VALvalid_ca"><code class="code">X509.Validation.valid_ca</code></a> or
+      <a href="X509.Validation.html#VALvalid_cas"><code class="code">X509.Validation.valid_cas</code></a>)!<br>
 </div>
 
 <pre><span id="VALserver_key_fingerprint"><span class="keyword">val</span> server_key_fingerprint</span> : <code class="type">?time:float -><br>       hash:Nocrypto.Hash.hash -><br>       fingerprints:(string * Cstruct.t) list -> <a href="X509.Authenticator.html#TYPEa">a</a></code></pre><div class="info ">
