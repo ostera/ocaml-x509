@@ -10,9 +10,9 @@
 <link title="Index of types" rel=Appendix href="index_types.html">
 <link title="Index of values" rel=Appendix href="index_values.html">
 <link title="Index of modules" rel=Appendix href="index_modules.html">
-<link title="X509" rel="Chapter" href="X509.html"><link title="Validation" rel="Section" href="#1_Validation">
-<link title="Validation failure" rel="Subsection" href="#2_Validationfailure">
-<link title="Validation functions" rel="Subsection" href="#2_Validationfunctions">
+<link title="X509" rel="Chapter" href="X509.html"><link title="Certificate Authorities" rel="Section" href="#2_CertificateAuthorities">
+<link title="Chain of trust verification" rel="Section" href="#2_Chainoftrustverification">
+<link title="Fingerprint verification" rel="Section" href="#2_Fingerprintverification">
 <title>X509.Validation</title>
 </head>
 <body>
@@ -23,15 +23,123 @@
 <h1>Module <a href="type_X509.Validation.html">X509.Validation</a></h1>
 
 <pre><span class="keyword">module</span> Validation: <code class="code">sig</code> <a href="X509.Validation.html">..</a> <code class="code">end</code></pre><div class="info module top">
-Validation logic: error variant and functions.<br>
+X.509 Certificate Chain Validation.<br>
 </div>
 <hr width="100%">
 <br>
-<h1 id="1_Validation">Validation</h1><br>
-<br>
-<h2 id="2_Validationfailure">Validation failure</h2><br>
+A chain of pairwise signed X.509 certificates is sent to the endpoint,
+      which use these to authenticate the other endpoint.  Usually a set of
+      trust anchors is configured on the endpoint, and the chain needs to be
+      rooted in one of the trust anchors.  In reality, chains may be incomplete
+      or reversed, and there can be multiple paths from the leaf certificate to
+      a trust anchor.
+<p>
 
-<pre><span id="TYPEvalidation_error"><span class="keyword">type</span> <code class="type"></code>validation_error</span> = <code class="type">[ `AuthorityKeyIdSubjectKeyIdMismatch of <a href="X509.html#TYPEt">X509.t</a> * <a href="X509.html#TYPEt">X509.t</a><br>       | `CertificateExpired of <a href="X509.html#TYPEt">X509.t</a><br>       | `EmptyCertificateChain<br>       | `InvalidCA of <a href="X509.html#TYPEt">X509.t</a><br>       | `InvalidExtensions of <a href="X509.html#TYPEt">X509.t</a><br>       | `InvalidFingerprint of <a href="X509.html#TYPEt">X509.t</a><br>       | `InvalidPathlen of <a href="X509.html#TYPEt">X509.t</a><br>       | `InvalidServerExtensions of <a href="X509.html#TYPEt">X509.t</a><br>       | `InvalidServerName of <a href="X509.html#TYPEt">X509.t</a><br>       | `InvalidSignature of <a href="X509.html#TYPEt">X509.t</a> * <a href="X509.html#TYPEt">X509.t</a><br>       | `InvalidVersion of <a href="X509.html#TYPEt">X509.t</a><br>       | `IssuerSubjectMismatch of <a href="X509.html#TYPEt">X509.t</a> * <a href="X509.html#TYPEt">X509.t</a><br>       | `NoTrustAnchor<br>       | `SelfSigned of <a href="X509.html#TYPEt">X509.t</a><br>       | `ServerNameNotPresent of <a href="X509.html#TYPEt">X509.t</a> ]</code> </pre>
+      RFC 5280 specifies a <a href="https://tools.ietf.org/html/rfc5280#section-6">path
+      validation</a> algorithm for authenticating chains, but this does not handle
+      multiple possible paths.  <a href="https://tools.ietf.org/html/rfc4158">RFC 4158</a>
+      describes possible path building strategies.
+<p>
+
+      This module provides path building, chain of trust verification, trust
+      anchor (certificate authority) validation, and validation via a
+      fingerprint list (for a trust on first use implementation).<br>
+<br>
+<h2 id="2_CertificateAuthorities">Certificate Authorities</h2><br>
+
+<pre><span id="TYPEca_error"><span class="keyword">type</span> <code class="type"></code>ca_error</span> = <code class="type">[ `CACertificateExpired of <a href="X509.html#TYPEt">X509.t</a> * float option<br>       | `CAInvalidExtensions of <a href="X509.html#TYPEt">X509.t</a><br>       | `CAInvalidSelfSignature of <a href="X509.html#TYPEt">X509.t</a><br>       | `CAInvalidVersion of <a href="X509.html#TYPEt">X509.t</a><br>       | `CAIssuerSubjectMismatch of <a href="X509.html#TYPEt">X509.t</a> ]</code> </pre>
+<div class="info ">
+The polymorphic variant of possible certificate authorities failures.<br>
+</div>
+
+
+<pre><span id="VALca_error_of_sexp"><span class="keyword">val</span> ca_error_of_sexp</span> : <code class="type">Sexplib.Sexp.t -> <a href="X509.Validation.html#TYPEca_error">ca_error</a></code></pre><div class="info ">
+<code class="code">ca_error_of_sexp sexp</code> is <code class="code">ca_error</code>, the unmarshalled <code class="code">sexp</code>.<br>
+</div>
+
+<pre><span id="VALsexp_of_ca_error"><span class="keyword">val</span> sexp_of_ca_error</span> : <code class="type"><a href="X509.Validation.html#TYPEca_error">ca_error</a> -> Sexplib.Sexp.t</code></pre><div class="info ">
+<code class="code">sexp_of_ca_error ca_error</code> is <code class="code">sexp</code>, the marshalled <code class="code">ca_error</code>.<br>
+</div>
+
+<pre><span id="VALca_error_to_string"><span class="keyword">val</span> ca_error_to_string</span> : <code class="type"><a href="X509.Validation.html#TYPEca_error">ca_error</a> -> string</code></pre><div class="info ">
+<code class="code">ca_error_to_string validation_error</code> is <code class="code">string</code>, the string representation of the <code class="code">ca_error</code>.<br>
+</div>
+
+<pre><span id="VALvalid_ca"><span class="keyword">val</span> valid_ca</span> : <code class="type">?time:float -> <a href="X509.html#TYPEt">X509.t</a> -> [ `Error of <a href="X509.Validation.html#TYPEca_error">ca_error</a> | `Ok ]</code></pre><div class="info ">
+<code class="code">valid_ca ~time certificate</code> is <code class="code">result</code>, which is `Ok if the given
+      certificate is self-signed, it is valid at <code class="code">time</code>, its extensions are not
+      present (if X.509 version 1 certificate), or are appropriate for a CA
+      (BasicConstraints is present and true, KeyUsage extension contains
+      keyCertSign).<br>
+</div>
+
+<pre><span id="VALvalid_cas"><span class="keyword">val</span> valid_cas</span> : <code class="type">?time:float -> <a href="X509.html#TYPEt">X509.t</a> list -> <a href="X509.html#TYPEt">X509.t</a> list</code></pre><div class="info ">
+<code class="code">valid_cas ~time certificates</code> is <code class="code">valid_certificates</code>, only
+      those certificates which pass the <code class="code">!valid_ca</code> check.<br>
+</div>
+<br>
+<h2 id="2_Chainoftrustverification">Chain of trust verification</h2><br>
+
+<pre><span id="TYPEleaf_validation_error"><span class="keyword">type</span> <code class="type"></code>leaf_validation_error</span> = <code class="type">[ `LeafCertificateExpired of <a href="X509.html#TYPEt">X509.t</a> * float option<br>       | `LeafInvalidExtensions of <a href="X509.html#TYPEt">X509.t</a><br>       | `LeafInvalidName of <a href="X509.html#TYPEt">X509.t</a> * <a href="X509.html#TYPEhost">X509.host</a> option<br>       | `LeafInvalidVersion of <a href="X509.html#TYPEt">X509.t</a> ]</code> </pre>
+<div class="info ">
+The polymorphic variant of a leaf certificate validation error.<br>
+</div>
+
+
+<pre><span id="TYPEchain_validation_error"><span class="keyword">type</span> <code class="type"></code>chain_validation_error</span> = <code class="type">[ `ChainAuthorityKeyIdSubjectKeyIdMismatch of <a href="X509.html#TYPEt">X509.t</a> * <a href="X509.html#TYPEt">X509.t</a><br>       | `ChainInvalidPathlen of <a href="X509.html#TYPEt">X509.t</a> * int<br>       | `ChainInvalidSignature of <a href="X509.html#TYPEt">X509.t</a> * <a href="X509.html#TYPEt">X509.t</a><br>       | `ChainIssuerSubjectMismatch of <a href="X509.html#TYPEt">X509.t</a> * <a href="X509.html#TYPEt">X509.t</a><br>       | `EmptyCertificateChain<br>       | `IntermediateCertificateExpired of <a href="X509.html#TYPEt">X509.t</a> * float option<br>       | `IntermediateInvalidExtensions of <a href="X509.html#TYPEt">X509.t</a><br>       | `IntermediateInvalidVersion of <a href="X509.html#TYPEt">X509.t</a><br>       | `NoTrustAnchor of <a href="X509.html#TYPEt">X509.t</a> ]</code> </pre>
+<div class="info ">
+The polymorphic variant of a chain validation error.<br>
+</div>
+
+
+<pre><span id="VALbuild_paths"><span class="keyword">val</span> build_paths</span> : <code class="type"><a href="X509.html#TYPEt">X509.t</a> -> <a href="X509.html#TYPEt">X509.t</a> list -> <a href="X509.html#TYPEt">X509.t</a> list list</code></pre><div class="info ">
+<code class="code">build_paths server rest</code> is <code class="code">paths</code>, which are all possible certificate
+      paths starting with <code class="code">server</code>.  These chains (C1..Cn) fulfill the predicate
+      that each certificate Cn is issued by the next one in the chain (C(n+1)):
+      the issuer of Cn matches the subject of C(n+1).  This is as described in
+      <a href="https://tools.ietf.org/html/rfc4158">RFC 4158</a>.<br>
+</div>
+
+<pre><span id="TYPEchain_error"><span class="keyword">type</span> <code class="type"></code>chain_error</span> = <code class="type">[ `Chain of <a href="X509.Validation.html#TYPEchain_validation_error">chain_validation_error</a><br>       | `Leaf of <a href="X509.Validation.html#TYPEleaf_validation_error">leaf_validation_error</a> ]</code> </pre>
+<div class="info ">
+The polymorphic variant of a chain validation error: either the leaf
+      certificate is problematic, or the chain itself.<br>
+</div>
+
+
+<pre><span id="VALchain_error_of_sexp"><span class="keyword">val</span> chain_error_of_sexp</span> : <code class="type">Sexplib.Sexp.t -> <a href="X509.Validation.html#TYPEchain_error">chain_error</a></code></pre><div class="info ">
+<code class="code">chain_error_of_sexp sexp</code> is <code class="code">chain_error</code>, the unmarshalled <code class="code">sexp</code>.<br>
+</div>
+
+<pre><span id="VALsexp_of_chain_error"><span class="keyword">val</span> sexp_of_chain_error</span> : <code class="type"><a href="X509.Validation.html#TYPEchain_error">chain_error</a> -> Sexplib.Sexp.t</code></pre><div class="info ">
+<code class="code">sexp_of_chain_error chain_error</code> is <code class="code">sexp</code>, the marshalled <code class="code">chain_error</code>.<br>
+</div>
+
+<pre><span id="VALchain_error_to_string"><span class="keyword">val</span> chain_error_to_string</span> : <code class="type"><a href="X509.Validation.html#TYPEchain_error">chain_error</a> -> string</code></pre><div class="info ">
+<code class="code">chain_error_to_string validation_error</code> is <code class="code">string</code>, the string representation of the <code class="code">chain_error</code>.<br>
+</div>
+
+<pre><span id="VALverify_chain"><span class="keyword">val</span> verify_chain</span> : <code class="type">?host:<a href="X509.html#TYPEhost">X509.host</a> -><br>       ?time:float -><br>       anchors:<a href="X509.html#TYPEt">X509.t</a> list -><br>       <a href="X509.html#TYPEt">X509.t</a> list -> [ `Fail of <a href="X509.Validation.html#TYPEchain_error">chain_error</a> | `Ok of <a href="X509.html#TYPEt">X509.t</a> ]</code></pre><div class="info ">
+<code class="code">verify_chain ~host ~time ~anchors chain</code> is <code class="code">result</code>, either <code class="code">Ok</code> and the
+      trust anchor used to verify the chain, or <code class="code">Fail</code> and the chain error.  RFC
+      5280 describes the implemented
+      <a href="https://tools.ietf.org/html/rfc5280#section-6.1">path validation</a>
+      algorithm: The validity period of the given certificates is checked
+      against the <code class="code">time</code>.  The X509v3 extensions of the <code class="code">chain</code> are checked,
+      then a chain of trust from <code class="code">anchors</code> to the server certificate is
+      validated.  The path length constraints are checked.  The server
+      certificate is checked to contain the given <code class="code">host</code>, using <a href="X509.html#VALhostnames"><code class="code">X509.hostnames</code></a>.
+      The returned certificate is the root of the chain, a member of the given
+      list of <code class="code">anchors</code>.<br>
+</div>
+
+<pre><span id="TYPEfingerprint_validation_error"><span class="keyword">type</span> <code class="type"></code>fingerprint_validation_error</span> = <code class="type">[ `InvalidFingerprint of <a href="X509.html#TYPEt">X509.t</a> * Cstruct.t * Cstruct.t<br>       | `NameNotInList of <a href="X509.html#TYPEt">X509.t</a><br>       | `ServerNameNotPresent of <a href="X509.html#TYPEt">X509.t</a> * string ]</code> </pre>
+<div class="info ">
+The polymorphic variant of a fingerprint validation error.<br>
+</div>
+
+
+<pre><span id="TYPEvalidation_error"><span class="keyword">type</span> <code class="type"></code>validation_error</span> = <code class="type">[ `EmptyCertificateChain<br>       | `Fingerprint of <a href="X509.Validation.html#TYPEfingerprint_validation_error">fingerprint_validation_error</a><br>       | `InvalidChain<br>       | `Leaf of <a href="X509.Validation.html#TYPEleaf_validation_error">leaf_validation_error</a> ]</code> </pre>
 <div class="info ">
 The polymorphic variant of validation errors.<br>
 </div>
@@ -48,45 +156,45 @@ The polymorphic variant of validation errors.<br>
 <pre><span id="VALvalidation_error_to_string"><span class="keyword">val</span> validation_error_to_string</span> : <code class="type"><a href="X509.Validation.html#TYPEvalidation_error">validation_error</a> -> string</code></pre><div class="info ">
 <code class="code">validation_error_to_string validation_error</code> is <code class="code">string</code>, the string representation of the <code class="code">validation_error</code>.<br>
 </div>
-<br>
-<h2 id="2_Validationfunctions">Validation functions</h2><br>
 
-<pre><span id="TYPEresult"><span class="keyword">type</span> <code class="type"></code>result</span> = <code class="type">[ `Fail of <a href="X509.Validation.html#TYPEvalidation_error">validation_error</a> | `Ok of <a href="X509.html#TYPEt">X509.t</a> option ]</code> </pre>
+<pre><span id="TYPEresult"><span class="keyword">type</span> <code class="type"></code>result</span> = <code class="type">[ `Fail of <a href="X509.Validation.html#TYPEvalidation_error">validation_error</a><br>       | `Ok of (<a href="X509.html#TYPEt">X509.t</a> list * <a href="X509.html#TYPEt">X509.t</a>) option ]</code> </pre>
 <div class="info ">
 The result of a validation: either success (optionally returning the used trust anchor), or failure<br>
 </div>
 
 
 <pre><span id="VALverify_chain_of_trust"><span class="keyword">val</span> verify_chain_of_trust</span> : <code class="type">?host:<a href="X509.html#TYPEhost">X509.host</a> -><br>       ?time:float -> anchors:<a href="X509.html#TYPEt">X509.t</a> list -> <a href="X509.html#TYPEt">X509.t</a> list -> <a href="X509.Validation.html#TYPEresult">result</a></code></pre><div class="info ">
-<code class="code">verify_chain_of_trust ~host ~time ~anchors certificates</code> is
-      <code class="code">result</code>, where the <code class="code">certificates</code> are verified using the
-      algorithm from
-      <a href="https://tools.ietf.org/html/rfc5280#section-6.1">RFC5280</a>: The
-      validity period of the given certificates is checked against the
-      <code class="code">time</code>.  The X509v3 extensions of the <code class="code">stack</code> are checked, then
-      a chain of trust from some <code class="code">anchors</code> to the server certificate
-      is validated.  The path length constraints are checked.
-      Finally, the server certificate is checked to contain the given
-      <code class="code">host</code>, using <a href="X509.html#VALhostnames"><code class="code">X509.hostnames</code></a>.  The returned certificate is the
-      root of the chain, a member of the given list of <code class="code">anchors</code>.<br>
+<code class="code">verify_chain_of_trust ~host ~time ~anchors certificates</code> is <code class="code">result</code>.
+      First, all possible paths are constructed using the <a href="X509.Validation.html#VALbuild_paths"><code class="code">X509.Validation.build_paths</code></a>
+      function, the first certificate of the chain is verified to be a valid
+      leaf certificate (no BasicConstraints extension) and contains the given
+      <code class="code">host</code> (using <a href="X509.html#VALhostnames"><code class="code">X509.hostnames</code></a>); if some path is valid, using <a href="X509.Validation.html#VALverify_chain"><code class="code">X509.Validation.verify_chain</code></a>,
+      the result will be <code class="code">Ok</code> and contain the actual certificate chain and the
+      trust anchor.<br>
+</div>
+<br>
+<h2 id="2_Fingerprintverification">Fingerprint verification</h2><br>
+
+<pre><span id="VALtrust_key_fingerprint"><span class="keyword">val</span> trust_key_fingerprint</span> : <code class="type">?host:<a href="X509.html#TYPEhost">X509.host</a> -><br>       ?time:float -><br>       hash:Nocrypto.Hash.hash -><br>       fingerprints:(string * Cstruct.t) list -><br>       <a href="X509.html#TYPEt">X509.t</a> list -> <a href="X509.Validation.html#TYPEresult">result</a></code></pre><div class="info ">
+<code class="code">trust_key_fingerprint ~time ~hash ~fingerprints certificates</code>
+      is <code class="code">result</code>, the first element of <code class="code">certificates</code> is verified
+      against the given <code class="code">fingerprints</code> map (hostname to public key
+      fingerprint) using <a href="X509.html#VALkey_fingerprint"><code class="code">X509.key_fingerprint</code></a>.  The certificate has to
+      be valid in the given <code class="code">time</code>.  If a <code class="code">host</code> is provided, the
+      certificate is checked for this name.  The <code class="code">`Wildcard hostname</code>
+      of the fingerprint list must match the name in the certificate,
+      using <a href="X509.html#VALhostnames"><code class="code">X509.hostnames</code></a>.<br>
 </div>
 
-<pre><span id="VALtrust_fingerprint"><span class="keyword">val</span> trust_fingerprint</span> : <code class="type">?host:<a href="X509.html#TYPEhost">X509.host</a> -><br>       ?time:float -><br>       hash:Nocrypto.Hash.hash -><br>       fingerprints:(string * Cstruct.t) list -><br>       <a href="X509.html#TYPEt">X509.t</a> list -> <a href="X509.Validation.html#TYPEresult">result</a></code></pre><div class="info ">
-<code class="code">trust_fingerprint ~time ~hash ~fingerprints certificates</code> is
-      <code class="code">result</code>, the first element of <code class="code">certificates</code> is verified
-      against the given <code class="code">fingerprints</code> map (hostname to fingerprint).
-      The certificate has to be valid in the given <code class="code">time</code>.  If a
-      <code class="code">host</code> is provided, the certificate is checked for this name.
-      The <code class="code">`Wildcard hostname</code> of the fingerprint list must match the
-      name in the certificate, using <a href="X509.html#VALhostnames"><code class="code">X509.hostnames</code></a>.<br>
-</div>
-
-<pre><span id="VALvalid_cas"><span class="keyword">val</span> valid_cas</span> : <code class="type">?time:float -> <a href="X509.html#TYPEt">X509.t</a> list -> <a href="X509.html#TYPEt">X509.t</a> list</code></pre><div class="info ">
-<code class="code">valid_cas ~time certificates</code> is <code class="code">valid_certificates</code>, only
-      those certificates whose validity period matches the given time,
-      and the certificate must be eligible for acting as a CA
-      (self-signed, if X.509v3, the basic constraint extension must be
-      present and true, and the key usage extension must contain
-      keyCertSign).<br>
+<pre><span id="VALtrust_cert_fingerprint"><span class="keyword">val</span> trust_cert_fingerprint</span> : <code class="type">?host:<a href="X509.html#TYPEhost">X509.host</a> -><br>       ?time:float -><br>       hash:Nocrypto.Hash.hash -><br>       fingerprints:(string * Cstruct.t) list -><br>       <a href="X509.html#TYPEt">X509.t</a> list -> <a href="X509.Validation.html#TYPEresult">result</a></code></pre><div class="info ">
+<span class="warning">Deprecated.</span>"Pin public keys, not certificates (use <a href="X509.Validation.html#VALtrust_key_fingerprint"><code class="code">X509.Validation.trust_key_fingerprint</code></a> instead)."<br>
+<code class="code">trust_cert_fingerprint ~time ~hash ~fingerprints certificates</code>
+      is <code class="code">result</code>, the first element of <code class="code">certificates</code> is verified to
+      match the given <code class="code">fingerprints</code> map (hostname to fingerprint)
+      using <a href="X509.html#VALfingerprint"><code class="code">X509.fingerprint</code></a>.  The certificate has to be valid in the
+      given <code class="code">time</code>.  If a <code class="code">host</code> is provided, the certificate is
+      checked for this name.  The <code class="code">`Wildcard hostname</code> of the
+      fingerprint list must match the name in the certificate, using
+      <a href="X509.html#VALhostnames"><code class="code">X509.hostnames</code></a>.<br>
 </div>
 </body></html>

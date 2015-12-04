@@ -22,7 +22,7 @@ X509 encoding, generation, and validation.
 <p>
 
     <code class="code">X509</code> is a module for handling X.509 certificates, as described
-    in <a href="https://tools.ietf.org/html/rfc5280">RFC5280</a>.  X.509
+    in <a href="https://tools.ietf.org/html/rfc5280">RFC 5280</a>.  X.509
     describes a hierarchical public key infrastructure, where all
     trust is delegated to certificate authorities (CA).  The task of a
     CA is to sign certificate signing requests (CSR), which turns them
@@ -48,21 +48,21 @@ X509 encoding, generation, and validation.
 
     This module provides <a href="X509.Encoding.html">parsers and unparsers</a> (PEM
     encoding) of ASN.1 encoded X.509 certificates, public and private
-    RSA keys (<a href="http://tools.ietf.org/html/rfc5208">PKCS 8, RFC5208</a>),
+    RSA keys (<a href="http://tools.ietf.org/html/rfc5208">PKCS 8, RFC 5208</a>),
     and certificate signing requests
-    (<a href="http://tools.ietf.org/html/rfc2986">PKCS 10, RFC2986</a>) (both
+    (<a href="http://tools.ietf.org/html/rfc2986">PKCS 10, RFC 2986</a>) (both
     require parts of <a href="https://tools.ietf.org/html/rfc2985">PKCS9,
-    RFC2985</a>), <a href="X509.Validation.html"> validation</a> of certificates, and
+    RFC 2985</a>), <a href="X509.Validation.html"> validation</a> of certificates, and
     construction of <a href="X509.Authenticator.html"> authenticators</a>.  Name
     validation, as defined in
-    <a href="https://tools.ietf.org/html/rfc6125">RFC6125</a>, is also
+    <a href="https://tools.ietf.org/html/rfc6125">RFC 6125</a>, is also
     implemented.  The <a href="X509.CA.html">CA</a> module provides functionality to
     create and sign CSR.
 <p>
 
     Missing is the handling of certificate revocation lists, online
     certificate status protocol, some X.509v3 extensions (such as
-    policy and name constraints).  The only key type supported is
+    policy and name constraints).  The only supported key type is
     RSA.<br>
 </div>
 <hr width="100%">
@@ -110,7 +110,14 @@ The polymorphic variant of public keys, with
     unused bits) for publicKeyInfo of <code class="code">public_key</code>.
 <p>
 
-    <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.2">RFC5280, 4.2.1.2, variant (1)</a><br>
+    <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.2">RFC 5280, 4.2.1.2, variant (1)</a><br>
+</div>
+
+<pre><span id="VALkey_fingerprint"><span class="keyword">val</span> key_fingerprint</span> : <code class="type">?hash:Nocrypto.Hash.hash -> <a href="X509.html#TYPEpublic_key">public_key</a> -> Cstruct.t</code></pre><div class="info ">
+<code class="code">key_fingerprint ?hash public_key</code> is <code class="code">result</code>, the hash (by
+    default SHA256) of the DER encoded public key (equivalent to
+    `openssl x509 -noout -pubkey | openssl pkey -pubin -outform DER |
+    openssl dgst -HASH`).<br>
 </div>
 
 <pre><span id="TYPEprivate_key"><span class="keyword">type</span> <code class="type"></code>private_key</span> = <code class="type">[ `RSA of Nocrypto.Rsa.priv ]</code> </pre>
@@ -169,6 +176,11 @@ A distinguished name is a list of <a href="X509.html#TYPEcomponent"><code class=
     representation of the <a href="X509.html#TYPEdistinguished_name">dn</a>.<br>
 </div>
 
+<pre><span id="VALfingerprint"><span class="keyword">val</span> fingerprint</span> : <code class="type">Nocrypto.Hash.hash -> <a href="X509.html#TYPEt">t</a> -> Cstruct.t</code></pre><div class="info ">
+<code class="code">fingerprint hash cert</code> is <code class="code">digest</code>,
+    the digest of <code class="code">cert</code> using the specified <code class="code">hash</code> algorithm<br>
+</div>
+
 <pre><span id="VALsubject"><span class="keyword">val</span> subject</span> : <code class="type"><a href="X509.html#TYPEt">t</a> -> <a href="X509.html#TYPEdistinguished_name">distinguished_name</a></code></pre><div class="info ">
 <code class="code">subject certificate</code> is <code class="code">dn</code>, the subject as
     <a href="X509.html#TYPEdistinguished_name">dn</a> of the <code class="code">certificate</code>.<br>
@@ -193,7 +205,7 @@ Certificate Authority operations
 </div>
 
 <pre><span class="keyword">module</span> <a href="X509.Validation.html">Validation</a>: <code class="code">sig</code> <a href="X509.Validation.html">..</a> <code class="code">end</code></pre><div class="info">
-Validation logic: error variant and functions.
+X.509 Certificate Chain Validation.
 </div>
 
 <pre><span class="keyword">module</span> <a href="X509.Authenticator.html">Authenticator</a>: <code class="code">sig</code> <a href="X509.Authenticator.html">..</a> <code class="code">end</code></pre><div class="info">
