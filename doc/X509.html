@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="X509" rel="Chapter" href="X509.html"><link title="Abstract certificate type" rel="Section" href="#1_Abstractcertificatetype">
+<link title="Basic operations on a certificate" rel="Section" href="#1_Basicoperationsonacertificate">
+<title>X509</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;</div>
+<h1>Module <a href="type_X509.html">X509</a></h1>
+
+<pre><span class="keyword">module</span> X509: <code class="code"><span class="keyword">sig</span></code> <a href="X509.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+X509 encoding, generation, and validation.
+<p>
+
+    <code class="code"><span class="constructor">X509</span></code> is a module for handling X.509 certificates, as described
+    in <a href="https://tools.ietf.org/html/rfc5280">RFC 5280</a>.  X.509
+    describes a hierarchical public key infrastructure, where all
+    trust is delegated to certificate authorities (CA).  The task of a
+    CA is to sign certificate signing requests (CSR), which turns them
+    into certificates, after verification that the requestor is
+    eligible.
+<p>
+
+    An X.509 certificate is an authentication token: a public key, a
+    subject (e.g. server name), a validity period, optionally a
+    purpose (usage), and various other optional <a href="X509.Extension.html">Extensions</a>.
+<p>
+
+    The public keys of trusted CAs are distributed with the software,
+    or configured manually.  When an endpoint connects, it has to
+    present its certificate chain, which are pairwise signed
+    certificates.  This chain is verified: the signatures have to be
+    valid, the last certificate must be signed by a trusted CA, the
+    name has to match the expected name, all certificates must be
+    valid at the current time, and the purpose of each certificate
+    must match its usage.  An alternative validator checks that the
+    hash of the server certificate matches the given hash.
+<p>
+
+    This module provides <a href="X509.Encoding.html">parsers and unparsers</a> (PEM
+    encoding) of ASN.1 encoded X.509 certificates, public and private
+    RSA keys (<a href="http://tools.ietf.org/html/rfc5208">PKCS 8, RFC 5208</a>),
+    and certificate signing requests
+    (<a href="http://tools.ietf.org/html/rfc2986">PKCS 10, RFC 2986</a>) (both
+    require parts of <a href="https://tools.ietf.org/html/rfc2985">PKCS9,
+    RFC 2985</a>), <a href="X509.Validation.html"> validation</a> of certificates, and
+    construction of <a href="X509.Authenticator.html"> authenticators</a>.  Name
+    validation, as defined in
+    <a href="https://tools.ietf.org/html/rfc6125">RFC 6125</a>, is also
+    implemented.  The <a href="X509.CA.html">CA</a> module provides functionality to
+    create and sign CSR.
+<p>
+
+    Missing is the handling of certificate revocation lists, online
+    certificate status protocol, some X.509v3 extensions (such as
+    policy and name constraints).  The only supported key type is
+    RSA.
+<p>
+
+    <em>57ff8dd - <a href="https://github.com/mirleft/ocaml-x509 ">homepage</a></em><br>
+</div>
+<hr width="100%">
+<br>
+<h1 id="1_Abstractcertificatetype">Abstract certificate type</h1><br>
+
+<pre><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> </pre>
+<div class="info ">
+The abstract type of a certificate, with
+    <a href="X509.Encoding.Pem.Certificate.html">encoding and decoding to PEM</a>.<br>
+</div>
+
+
+<pre><span id="VALt_of_sexp"><span class="keyword">val</span> t_of_sexp</span> : <code class="type">Sexplib.Sexp.t -> <a href="X509.html#TYPEt">t</a></code></pre><div class="info ">
+<code class="code">t_of_sexp&nbsp;sexp</code> is <code class="code">certificate</code>, the unmarshalled <code class="code">sexp</code>.<br>
+</div>
+
+<pre><span id="VALsexp_of_t"><span class="keyword">val</span> sexp_of_t</span> : <code class="type"><a href="X509.html#TYPEt">t</a> -> Sexplib.Sexp.t</code></pre><div class="info ">
+<code class="code">sexp_of_t&nbsp;certificate</code> is <code class="code">sexp</code>, the marshalled <code class="code">certificate</code>.<br>
+</div>
+<br>
+<h1 id="1_Basicoperationsonacertificate">Basic operations on a certificate</h1><br>
+
+<pre><span id="TYPEkey_type"><span class="keyword">type</span> <code class="type"></code>key_type</span> = <code class="type">[ `EC of Asn.OID.t | `RSA ]</code> </pre>
+<div class="info ">
+The polymorphic variant of public key types.<br>
+</div>
+
+
+<pre><span id="VALsupports_keytype"><span class="keyword">val</span> supports_keytype</span> : <code class="type"><a href="X509.html#TYPEt">t</a> -> <a href="X509.html#TYPEkey_type">key_type</a> -> bool</code></pre><div class="info ">
+<code class="code">supports_keytype&nbsp;certificate&nbsp;key_type</code> is <code class="code">result</code>, whether public key of the <code class="code">certificate</code> matches the given <code class="code">key_type</code>.<br>
+</div>
+
+<pre><span id="TYPEpublic_key"><span class="keyword">type</span> <code class="type"></code>public_key</span> = <code class="type">[ `EC_pub of Asn.OID.t | `RSA of Nocrypto.Rsa.pub ]</code> </pre>
+<div class="info ">
+The polymorphic variant of public keys, with
+    <a href="http://tools.ietf.org/html/rfc5208">PKCS 8</a>
+    <a href="X509.Encoding.Pem.Public_key.html">encoding and decoding to PEM</a>.<br>
+</div>
+
+
+<pre><span id="VALkey_id"><span class="keyword">val</span> key_id</span> : <code class="type"><a href="X509.html#TYPEpublic_key">public_key</a> -> Cstruct.t</code></pre><div class="info ">
+<code class="code">key_id&nbsp;public_key</code> is <code class="code">result</code>, the 160-bit <code class="code"><span class="keywordsign">`</span><span class="constructor">SHA1</span></code> hash of the BIT
+    STRING subjectPublicKey (excluding tag, length, and number of
+    unused bits) for publicKeyInfo of <code class="code">public_key</code>.
+<p>
+
+    <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.2">RFC 5280, 4.2.1.2, variant (1)</a><br>
+</div>
+
+<pre><span id="VALkey_fingerprint"><span class="keyword">val</span> key_fingerprint</span> : <code class="type">?hash:Nocrypto.Hash.hash -> <a href="X509.html#TYPEpublic_key">public_key</a> -> Cstruct.t</code></pre><div class="info ">
+<code class="code">key_fingerprint&nbsp;?hash&nbsp;public_key</code> is <code class="code">result</code>, the hash (by
+    default SHA256) of the DER encoded public key (equivalent to
+    `openssl x509 -noout -pubkey | openssl pkey -pubin -outform DER |
+    openssl dgst -HASH`).<br>
+</div>
+
+<pre><span id="TYPEprivate_key"><span class="keyword">type</span> <code class="type"></code>private_key</span> = <code class="type">[ `RSA of Nocrypto.Rsa.priv ]</code> </pre>
+<div class="info ">
+The polymorphic variant of private keys, with
+    <a href="http://tools.ietf.org/html/rfc5208">PKCS 8</a>
+    <a href="X509.Encoding.Pem.Private_key.html">encoding and decoding to PEM</a>.<br>
+</div>
+
+
+<pre><span id="VALpublic_key"><span class="keyword">val</span> public_key</span> : <code class="type"><a href="X509.html#TYPEt">t</a> -> <a href="X509.html#TYPEpublic_key">public_key</a></code></pre><div class="info ">
+<code class="code">public_key&nbsp;certificate</code> is <code class="code">pubkey</code>, the public key of the
+    <code class="code">certificate</code>.<br>
+</div>
+
+<pre><span id="VALhostnames"><span class="keyword">val</span> hostnames</span> : <code class="type"><a href="X509.html#TYPEt">t</a> -> string list</code></pre><div class="info ">
+<code class="code">hostnames&nbsp;certficate</code> are <code class="code">hostnames</code>, the list of hostnames this
+    <code class="code">certificate</code> is valid for.  Currently, these are the DNS names of
+    the <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.6">Subject
+    Alternative Name</a> extension, if present, or otherwise the
+    singleton list containing the common name.<br>
+</div>
+
+<pre><span id="TYPEhost"><span class="keyword">type</span> <code class="type"></code>host</span> = <code class="type">[ `Strict of string | `Wildcard of string ]</code> </pre>
+<div class="info ">
+The polymorphic variant for hostname validation.<br>
+</div>
+
+
+<pre><span id="VALsupports_hostname"><span class="keyword">val</span> supports_hostname</span> : <code class="type"><a href="X509.html#TYPEt">t</a> -> <a href="X509.html#TYPEhost">host</a> -> bool</code></pre><div class="info ">
+<code class="code">supports_hostname&nbsp;certificate&nbsp;host</code> is <code class="code">result</code>, whether the
+    <code class="code">certificate</code> contains the given <code class="code">host</code>, using
+    <a href="X509.html#VALhostnames"><code class="code"><span class="constructor">X509</span>.hostnames</code></a>.<br>
+</div>
+
+<pre><span id="VALcommon_name_to_string"><span class="keyword">val</span> common_name_to_string</span> : <code class="type"><a href="X509.html#TYPEt">t</a> -> string</code></pre><div class="info ">
+<code class="code">common_name_to_string&nbsp;certificate</code> is <code class="code">common_name</code>, the common
+    name of the subject of the <code class="code">certificate</code>.<br>
+</div>
+
+<pre><span id="TYPEcomponent"><span class="keyword">type</span> <code class="type"></code>component</span> = <code class="type">[ `C of string<br>       | `CN of string<br>       | `DC of string<br>       | `DNQ of string<br>       | `Generation of string<br>       | `Given_name of string<br>       | `Initials of string<br>       | `L of string<br>       | `Mail of string<br>       | `O of string<br>       | `OU of string<br>       | `Other of Asn.OID.t * string<br>       | `Pseudonym of string<br>       | `SP of string<br>       | `Serialnumber of string<br>       | `Surname of string<br>       | `T of string ]</code> </pre>
+<div class="info ">
+The polymorphic variant of a distinguished name component, as
+    defined in X.500.<br>
+</div>
+
+
+<pre><span id="TYPEdistinguished_name"><span class="keyword">type</span> <code class="type"></code>distinguished_name</span> = <code class="type"><a href="X509.html#TYPEcomponent">component</a> list</code> </pre>
+<div class="info ">
+A distinguished name is a list of <a href="X509.html#TYPEcomponent"><code class="code"><span class="constructor">X509</span>.component</code></a>.<br>
+</div>
+
+
+<pre><span id="VALdistinguished_name_to_string"><span class="keyword">val</span> distinguished_name_to_string</span> : <code class="type"><a href="X509.html#TYPEdistinguished_name">distinguished_name</a> -> string</code></pre><div class="info ">
+<code class="code">distinguished_name_to_string&nbsp;dn</code> is <code class="code">string</code>, the string
+    representation of the <a href="X509.html#TYPEdistinguished_name">dn</a>.<br>
+</div>
+
+<pre><span id="VALfingerprint"><span class="keyword">val</span> fingerprint</span> : <code class="type">Nocrypto.Hash.hash -> <a href="X509.html#TYPEt">t</a> -> Cstruct.t</code></pre><div class="info ">
+<code class="code">fingerprint&nbsp;hash&nbsp;cert</code> is <code class="code">digest</code>,
+    the digest of <code class="code">cert</code> using the specified <code class="code">hash</code> algorithm<br>
+</div>
+
+<pre><span id="VALsubject"><span class="keyword">val</span> subject</span> : <code class="type"><a href="X509.html#TYPEt">t</a> -> <a href="X509.html#TYPEdistinguished_name">distinguished_name</a></code></pre><div class="info ">
+<code class="code">subject&nbsp;certificate</code> is <code class="code">dn</code>, the subject as
+    <a href="X509.html#TYPEdistinguished_name">dn</a> of the <code class="code">certificate</code>.<br>
+</div>
+
+<pre><span id="VALissuer"><span class="keyword">val</span> issuer</span> : <code class="type"><a href="X509.html#TYPEt">t</a> -> <a href="X509.html#TYPEdistinguished_name">distinguished_name</a></code></pre><div class="info ">
+<code class="code">issuer&nbsp;certificate</code> is <code class="code">dn</code>, the issuer as
+    <a href="X509.html#TYPEdistinguished_name">dn</a> of the <code class="code">certificate</code>.<br>
+</div>
+
+<pre><span id="VALserial"><span class="keyword">val</span> serial</span> : <code class="type"><a href="X509.html#TYPEt">t</a> -> Z.t</code></pre><div class="info ">
+<code class="code">serial&nbsp;certificate</code> is <code class="code">sn</code>, the serial number of the
+    <code class="code">certificate</code>.<br>
+</div>
+
+<pre><span id="VALvalidity"><span class="keyword">val</span> validity</span> : <code class="type"><a href="X509.html#TYPEt">t</a> -> Asn.Time.t * Asn.Time.t</code></pre><div class="info ">
+<code class="code">validity&nbsp;certificate</code> is <code class="code">from,&nbsp;until</code>, the validity of the certificate.<br>
+</div>
+
+<pre><span class="keyword">module</span> <a href="X509.Extension.html">Extension</a>: <code class="code"><span class="keyword">sig</span></code> <a href="X509.Extension.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+X.509v3 extensions
+</div>
+
+<pre><span class="keyword">module</span> <a href="X509.CA.html">CA</a>: <code class="code"><span class="keyword">sig</span></code> <a href="X509.CA.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+Certificate Authority operations
+</div>
+
+<pre><span class="keyword">module</span> <a href="X509.Validation.html">Validation</a>: <code class="code"><span class="keyword">sig</span></code> <a href="X509.Validation.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+X.509 Certificate Chain Validation.
+</div>
+
+<pre><span class="keyword">module</span> <a href="X509.Authenticator.html">Authenticator</a>: <code class="code"><span class="keyword">sig</span></code> <a href="X509.Authenticator.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+Authenticators of certificate chains
+</div>
+
+<pre><span class="keyword">module</span> <a href="X509.Encoding.html">Encoding</a>: <code class="code"><span class="keyword">sig</span></code> <a href="X509.Encoding.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+Encodings
+</div>
+</body></html>

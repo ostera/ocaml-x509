@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="X509.Authenticator.html">
+<link rel="Up" href="X509.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="X509" rel="Chapter" href="X509.html"><link title="ASN.1 Encoding" rel="Section" href="#1_ASN1Encoding">
+<title>X509.Encoding</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="X509.Authenticator.html" title="X509.Authenticator">Previous</a>
+&nbsp;<a class="up" href="X509.html" title="X509">Up</a>
+&nbsp;</div>
+<h1>Module <a href="type_X509.Encoding.html">X509.Encoding</a></h1>
+
+<pre><span class="keyword">module</span> Encoding: <code class="code"><span class="keyword">sig</span></code> <a href="X509.Encoding.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+Encodings<br>
+</div>
+<hr width="100%">
+<br>
+<h1 id="1_ASN1Encoding">ASN.1 Encoding</h1><br>
+
+<pre><span id="VALparse"><span class="keyword">val</span> parse</span> : <code class="type">Cstruct.t -> <a href="X509.html#TYPEt">X509.t</a> option</code></pre><div class="info ">
+<code class="code">parse&nbsp;cstruct</code> is <code class="code">certificate&nbsp;option</code>, the ASN.1 decoded
+      <code class="code">certificate</code> or <code class="code"><span class="constructor">None</span></code>.<br>
+</div>
+
+<pre><span id="VALcs_of_cert"><span class="keyword">val</span> cs_of_cert</span> : <code class="type"><a href="X509.html#TYPEt">X509.t</a> -> Cstruct.t</code></pre><div class="info ">
+<code class="code">cs_of_cert&nbsp;certificate</code> is <code class="code">cstruct</code>, the ASN.1 encoded
+      representation of the <code class="code">certificate</code>.<br>
+</div>
+
+<pre><span id="VALcs_of_distinguished_name"><span class="keyword">val</span> cs_of_distinguished_name</span> : <code class="type"><a href="X509.html#TYPEdistinguished_name">X509.distinguished_name</a> -> Cstruct.t</code></pre><div class="info ">
+<code class="code">cs_of_distinguished_name&nbsp;dn</code> is <code class="code">cstruct</code>, the ASN.1 encoded
+      representation of the distinguished name <code class="code">dn</code>.<br>
+</div>
+
+<pre><span id="VALparse_signing_request"><span class="keyword">val</span> parse_signing_request</span> : <code class="type">Cstruct.t -> <a href="X509.CA.html#TYPEsigning_request">X509.CA.signing_request</a> option</code></pre><div class="info ">
+<code class="code">parse_signing_request&nbsp;cstruct</code> is <code class="code">signing_request&nbsp;option</code>,
+      the ASN.1 decoded <code class="code">cstruct</code> or <code class="code"><span class="constructor">None</span></code>.<br>
+</div>
+
+<pre><span id="VALcs_of_signing_request"><span class="keyword">val</span> cs_of_signing_request</span> : <code class="type"><a href="X509.CA.html#TYPEsigning_request">X509.CA.signing_request</a> -> Cstruct.t</code></pre><div class="info ">
+<code class="code">cs_of_signing_request&nbsp;sr</code> is <code class="code">cstruct</code>, the ASN.1 encoded
+      representation of the <code class="code">sr</code>.<br>
+</div>
+
+<pre><span id="VALpkcs1_digest_info_of_cstruct"><span class="keyword">val</span> pkcs1_digest_info_of_cstruct</span> : <code class="type">Cstruct.t -> (Nocrypto.Hash.hash * Cstruct.t) option</code></pre><div class="info ">
+<code class="code">pkcs1_digest_info_of_cstruct&nbsp;data</code> is <code class="code">hash,&nbsp;signature&nbsp;option</code>,
+      the hash and raw signature.<br>
+</div>
+
+<pre><span id="VALpkcs1_digest_info_to_cstruct"><span class="keyword">val</span> pkcs1_digest_info_to_cstruct</span> : <code class="type">Nocrypto.Hash.hash * Cstruct.t -> Cstruct.t</code></pre><div class="info ">
+<code class="code">pkcs1_digest_info_to_cstruct&nbsp;(hash,&nbsp;signature)</code> is <code class="code">data</code>, the
+      encoded hash and signature.<br>
+</div>
+
+<pre><span id="VALrsa_public_to_cstruct"><span class="keyword">val</span> rsa_public_to_cstruct</span> : <code class="type">Nocrypto.Rsa.pub -> Cstruct.t</code></pre><div class="info ">
+<code class="code">rsa_public_to_cstruct&nbsp;pk</code> is <code class="code">buffer</code>, the ASN.1 encoding of the
+      given public key.<br>
+</div>
+
+<pre><span id="VALrsa_public_of_cstruct"><span class="keyword">val</span> rsa_public_of_cstruct</span> : <code class="type">Cstruct.t -> Nocrypto.Rsa.pub option</code></pre><div class="info ">
+<code class="code">rsa_public_of_cstruct&nbsp;buffer</code> is <code class="code">pubkey</code>, the public key of
+      the ASN.1 encoded buffer.<br>
+</div>
+
+<pre><span class="keyword">module</span> <a href="X509.Encoding.Pem.html">Pem</a>: <code class="code"><span class="keyword">sig</span></code> <a href="X509.Encoding.Pem.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info">
+Parser and unparser of PEM files
+</div>
+</body></html>
