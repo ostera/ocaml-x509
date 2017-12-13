@@ -28,8 +28,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">X509</span>.private_key&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.<span class="constructor">CA</span>.signing_request<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;sign&nbsp;:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">X509</span>.<span class="constructor">CA</span>.signing_request&nbsp;<span class="keywordsign">-&gt;</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;valid_from:<span class="constructor">Asn</span>.<span class="constructor">Time</span>.t&nbsp;<span class="keywordsign">-&gt;</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;valid_until:<span class="constructor">Asn</span>.<span class="constructor">Time</span>.t&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;valid_from:<span class="constructor">Ptime</span>.t&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;valid_until:<span class="constructor">Ptime</span>.t&nbsp;<span class="keywordsign">-&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;?digest:<span class="constructor">Nocrypto</span>.<span class="constructor">Hash</span>.hash&nbsp;<span class="keywordsign">-&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;?serial:<span class="constructor">Z</span>.t&nbsp;<span class="keywordsign">-&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;?extensions:(bool&nbsp;*&nbsp;<span class="constructor">X509</span>.<span class="constructor">Extension</span>.t)&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span><br>

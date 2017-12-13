@@ -14,184 +14,249 @@
 &nbsp;</div>
 <h1>Index of types</h1>
 <table>
-<tr><td align="left"><br>A</td></tr>
+<tr><td align="left"><div>A</div></td></tr>
 <tr><td><a href="X509.Authenticator.html#TYPEa">a</a> [<a href="X509.Authenticator.html">X509.Authenticator</a>]</td>
 <td><div class="info">
-An authenticator <code class="code">a</code> is a function type which takes a hostname
+<p>An authenticator <code class="code">a</code> is a function type which takes a hostname
       and a certificate stack to an authentication decision
-      <a href="X509.Validation.html#TYPEresult"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.result</code></a>.
+      <a href="X509.Validation.html#TYPEresult"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.result</code></a>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Extension.html#TYPEauthority_key_id">authority_key_id</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
 <td><div class="info">
-The authority key identifier, as present in the
+<p>The authority key identifier, as present in the
   <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.1">Authority Key
-  Identifier</a> extension.
+  Identifier</a> extension.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>C</td></tr>
+<tr><td align="left"><div>C</div></td></tr>
+<tr><td><a href="X509.CRL.html#TYPEc">c</a> [<a href="X509.CRL.html">X509.CRL</a>]</td>
+<td><div class="info">
+<p>The type of a revocation list, kept abstract.</p>
+
+</div>
+</td></tr>
 <tr><td><a href="X509.Validation.html#TYPEca_error">ca_error</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-The polymorphic variant of possible certificate authorities failures.
+<p>The polymorphic variant of possible certificate authorities failures.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Validation.html#TYPEchain_error">chain_error</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-The polymorphic variant of a chain validation error: either the leaf
-      certificate is problematic, or the chain itself.
+<p>The polymorphic variant of a chain validation error: either the leaf
+      certificate is problematic, or the chain itself.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Validation.html#TYPEchain_validation_error">chain_validation_error</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-The polymorphic variant of a chain validation error.
+<p>The polymorphic variant of a chain validation error.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.html#TYPEcomponent">component</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-The polymorphic variant of a distinguished name component, as
-    defined in X.500.
+<p>The polymorphic variant of a distinguished name component, as
+    defined in X.500.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>D</td></tr>
+<tr><td align="left"><div>D</div></td></tr>
 <tr><td><a href="X509.html#TYPEdistinguished_name">distinguished_name</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-A distinguished name is a list of <a href="X509.html#TYPEcomponent"><code class="code"><span class="constructor">X509</span>.component</code></a>.
+<p>A distinguished name is a list of <a href="X509.html#TYPEcomponent"><code class="code"><span class="constructor">X509</span>.component</code></a>.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>E</td></tr>
+<tr><td><a href="X509.Extension.html#TYPEdistribution_point">distribution_point</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
+<td><div class="info">
+<p>Distribution point, consisting of an optional name, an optional list of
+      allowed reasons, and an optional issuer.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="X509.Extension.html#TYPEdistribution_point_name">distribution_point_name</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
+<td><div class="info">
+<p>Distribution point name, either a full one using general names, or a
+      relative one using a distinguished name.</p>
+
+</div>
+</td></tr>
+<tr><td align="left"><div>E</div></td></tr>
 <tr><td><a href="X509.Extension.html#TYPEextended_key_usage">extended_key_usage</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
 <td><div class="info">
-The polymorphic variant of
+<p>The polymorphic variant of
   <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.12">extended key
-  usages</a>.
+  usages</a>.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>F</td></tr>
+<tr><td align="left"><div>F</div></td></tr>
 <tr><td><a href="X509.Validation.html#TYPEfingerprint_validation_error">fingerprint_validation_error</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-The polymorphic variant of a fingerprint validation error.
+<p>The polymorphic variant of a fingerprint validation error.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>G</td></tr>
+<tr><td align="left"><div>G</div></td></tr>
 <tr><td><a href="X509.Extension.html#TYPEgeneral_name">general_name</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
 <td><div class="info">
-A list of <code class="code">general_name</code>s is the value of both
+<p>A list of <code class="code">general_name</code>s is the value of both
       <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.6">subjectAltName</a>
       and
       <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.7">IssuerAltName</a>
-      extension.
+      extension.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>H</td></tr>
+<tr><td align="left"><div>H</div></td></tr>
 <tr><td><a href="X509.html#TYPEhost">host</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-The polymorphic variant for hostname validation.
+<p>The polymorphic variant for hostname validation.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>K</td></tr>
+<tr><td align="left"><div>K</div></td></tr>
 <tr><td><a href="X509.html#TYPEkey_type">key_type</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-The polymorphic variant of public key types.
+<p>The polymorphic variant of public key types.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Extension.html#TYPEkey_usage">key_usage</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
 <td><div class="info">
-The polymorphic variant of
+<p>The polymorphic variant of
   <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.3">key
-  usages</a>.
+  usages</a>.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>L</td></tr>
+<tr><td align="left"><div>L</div></td></tr>
 <tr><td><a href="X509.Validation.html#TYPEleaf_validation_error">leaf_validation_error</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-The polymorphic variant of a leaf certificate validation error.
+<p>The polymorphic variant of a leaf certificate validation error.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>N</td></tr>
+<tr><td align="left"><div>N</div></td></tr>
 <tr><td><a href="X509.Extension.html#TYPEname_constraint">name_constraint</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
 <td><div class="info">
-Name constraints, as defined in
+<p>Name constraints, as defined in
   <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.10">RFC
-  5280</a>.
+  5280</a>.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>P</td></tr>
+<tr><td align="left"><div>P</div></td></tr>
 <tr><td><a href="X509.Extension.html#TYPEpolicy">policy</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
 <td><div class="info">
-Certificate policies, the
+<p>Certificate policies, the
   <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.4">policy
-  extension</a>.
+  extension</a>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Extension.html#TYPEpriv_key_usage_period">priv_key_usage_period</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
 <td><div class="info">
-The private key usage period, as defined in
-  <a href="https://tools.ietf.org/html/rfc3280#section-4.2.1.4">RFC 3280</a>.
+<p>The private key usage period, as defined in
+  <a href="https://tools.ietf.org/html/rfc3280#section-4.2.1.4">RFC 3280</a>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.html#TYPEprivate_key">private_key</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-The polymorphic variant of private keys, with
+<p>The polymorphic variant of private keys, with
     <a href="http://tools.ietf.org/html/rfc5208">PKCS 8</a>
-    <a href="X509.Encoding.Pem.Private_key.html">encoding and decoding to PEM</a>.
+    <a href="X509.Encoding.Pem.Private_key.html">encoding and decoding to PEM</a>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.html#TYPEpublic_key">public_key</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-The polymorphic variant of public keys, with
+<p>The polymorphic variant of public keys, with
     <a href="http://tools.ietf.org/html/rfc5208">PKCS 8</a>
-    <a href="X509.Encoding.Pem.Public_key.html">encoding and decoding to PEM</a>.
+    <a href="X509.Encoding.Pem.Public_key.html">encoding and decoding to PEM</a>.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>R</td></tr>
+<tr><td align="left"><div>R</div></td></tr>
+<tr><td><a href="X509.Extension.html#TYPEreason">reason</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
+<td><div class="info">
+<p>Type of allowed revocation reasons for a given distribution point.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="X509.Extension.html#TYPEreason_code">reason_code</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
+<td><div class="info">
+<p>The reason of a revoked certificate.</p>
+
+</div>
+</td></tr>
 <tr><td><a href="X509.CA.html#TYPErequest_extensions">request_extensions</a> [<a href="X509.CA.html">X509.CA</a>]</td>
 <td><div class="info">
-The polymorphic variant of certificate request extensions, as
+<p>The polymorphic variant of certificate request extensions, as
       defined in <a href="http://tools.ietf.org/html/rfc2985">PKCS 9
-      (RFC 2985)</a>.
+      (RFC 2985)</a>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.CA.html#TYPErequest_info">request_info</a> [<a href="X509.CA.html">X509.CA</a>]</td>
 <td><div class="info">
-The raw request info of a
+<p>The raw request info of a
       <a href="https://tools.ietf.org/html/rfc2986#section-4">PKCS 10
-      certification request info</a>.
+      certification request info</a>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Validation.html#TYPEresult">result</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-The result of a validation: either success (optionally returning the used trust anchor), or failure
+<p>The result of a validation: either success (optionally returning the used trust anchor), or failure</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>S</td></tr>
+<tr><td><a href="X509.CRL.html#TYPErevoked_cert">revoked_cert</a> [<a href="X509.CRL.html">X509.CRL</a>]</td>
+<td><div class="info">
+<p>The type of a revoked certificate, which consists of a serial number, the
+      revocation date, and possibly extensions.</p>
+
+</div>
+</td></tr>
+<tr><td align="left"><div>S</div></td></tr>
 <tr><td><a href="X509.CA.html#TYPEsigning_request">signing_request</a> [<a href="X509.CA.html">X509.CA</a>]</td>
 <td><div class="info">
-The abstract type of a (self-signed)
+<p>The abstract type of a (self-signed)
   <a href="https://tools.ietf.org/html/rfc2986#page-7">PKCS 10 certification
   request</a>, with <a href="X509.Encoding.Pem.Certificate_signing_request.html">encoding
-  and decoding to PEM</a>.
+  and decoding to PEM</a>.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>T</td></tr>
+<tr><td align="left"><div>T</div></td></tr>
 <tr><td><a href="X509.Encoding.Pem.Certificate_signing_request.html#TYPEt">t</a> [<a href="X509.Encoding.Pem.Certificate_signing_request.html">X509.Encoding.Pem.Certificate_signing_request</a>]</td>
 <td></td></tr>
 <tr><td><a href="X509.Extension.html#TYPEt">t</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
 <td><div class="info">
-The polymorphic variant of
+<p>The polymorphic variant of
   <a href="https://tools.ietf.org/html/rfc5280#section-4.2">X509v3
-  extensions</a>.
+  extensions</a>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.html#TYPEt">t</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-The abstract type of a certificate, with
-    <a href="X509.Encoding.Pem.Certificate.html">encoding and decoding to PEM</a>.
+<p>The abstract type of a certificate, with
+    <a href="X509.Encoding.Pem.Certificate.html">encoding and decoding to PEM</a>.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>V</td></tr>
+<tr><td align="left"><div>V</div></td></tr>
 <tr><td><a href="X509.Validation.html#TYPEvalidation_error">validation_error</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-The polymorphic variant of validation errors.
+<p>The polymorphic variant of validation errors.</p>
+
 </div>
 </td></tr>
 </table>

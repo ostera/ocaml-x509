@@ -21,23 +21,26 @@
 </div>
 <h1>Module <a href="type_X509.Authenticator.html">X509.Authenticator</a></h1>
 
-<pre><span class="keyword">module</span> Authenticator: <code class="code"><span class="keyword">sig</span></code> <a href="X509.Authenticator.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
-Authenticators of certificate chains<br>
+<pre><span id="MODULEAuthenticator"><span class="keyword">module</span> Authenticator</span>: <code class="code"><span class="keyword">sig</span></code> <a href="X509.Authenticator.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>Authenticators of certificate chains</p>
+</div>
 </div>
 <hr width="100%">
-<br>
-<h1 id="1_Authenticators">Authenticators</h1><br>
-
+<h2 id="1_Authenticators">Authenticators</h2>
 <pre><span id="TYPEa"><span class="keyword">type</span> <code class="type"></code>a</span> = <code class="type">?host:<a href="X509.html#TYPEhost">X509.host</a> -> <a href="X509.html#TYPEt">X509.t</a> list -> <a href="X509.Validation.html#TYPEresult">X509.Validation.result</a></code> </pre>
 <div class="info ">
-An authenticator <code class="code">a</code> is a function type which takes a hostname
+<div class="info-desc">
+<p>An authenticator <code class="code">a</code> is a function type which takes a hostname
       and a certificate stack to an authentication decision
-      <a href="X509.Validation.html#TYPEresult"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.result</code></a>.<br>
+      <a href="X509.Validation.html#TYPEresult"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.result</code></a>.</p>
+</div>
 </div>
 
 
-<pre><span id="VALchain_of_trust"><span class="keyword">val</span> chain_of_trust</span> : <code class="type">?time:float -> <a href="X509.html#TYPEt">X509.t</a> list -> <a href="X509.Authenticator.html#TYPEa">a</a></code></pre><div class="info ">
-<code class="code">chain_of_trust&nbsp;?time&nbsp;trust_anchors</code> is <code class="code">authenticator</code>, which
+<pre><span id="VALchain_of_trust"><span class="keyword">val</span> chain_of_trust</span> : <code class="type">?time:Ptime.t -> ?crls:<a href="X509.CRL.html#TYPEc">X509.CRL.c</a> list -> <a href="X509.html#TYPEt">X509.t</a> list -> <a href="X509.Authenticator.html#TYPEa">a</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">chain_of_trust&nbsp;?time&nbsp;trust_anchors</code> is <code class="code">authenticator</code>, which
       uses the given <code class="code">time</code> and list of <code class="code">trust_anchors</code> to verify the
       certificate chain. This is an implementation of the algorithm
       described in
@@ -45,37 +48,49 @@ An authenticator <code class="code">a</code> is a function type which takes a ho
       using <a href="X509.Validation.html#VALverify_chain_of_trust"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.verify_chain_of_trust</code></a>.  The given trust
       anchors are not checked to be valid trust anchors any further
       (you have to do this manually with <a href="X509.Validation.html#VALvalid_ca"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.valid_ca</code></a> or
-      <a href="X509.Validation.html#VALvalid_cas"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.valid_cas</code></a>)!<br>
+      <a href="X509.Validation.html#VALvalid_cas"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.valid_cas</code></a>)!</p>
+</div>
 </div>
 
-<pre><span id="VALserver_key_fingerprint"><span class="keyword">val</span> server_key_fingerprint</span> : <code class="type">?time:float -><br>       hash:Nocrypto.Hash.hash -><br>       fingerprints:(string * Cstruct.t) list -> <a href="X509.Authenticator.html#TYPEa">a</a></code></pre><div class="info ">
-<code class="code">server_key_fingerprint&nbsp;~time&nbsp;hash&nbsp;fingerprints</code> is an
+<pre><span id="VALserver_key_fingerprint"><span class="keyword">val</span> server_key_fingerprint</span> : <code class="type">?time:Ptime.t -><br>       hash:Nocrypto.Hash.hash -><br>       fingerprints:(string * Cstruct.t) list -> <a href="X509.Authenticator.html#TYPEa">a</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">server_key_fingerprint&nbsp;~time&nbsp;hash&nbsp;fingerprints</code> is an
       <code class="code">authenticator</code> which uses the given <code class="code">time</code> and list of
       <code class="code">fingerprints</code> to verify that the fingerprint of the first
       element of the certificate chain matches the given fingerprint,
-      using <a href="X509.Validation.html#VALtrust_key_fingerprint"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.trust_key_fingerprint</code></a>.<br>
+      using <a href="X509.Validation.html#VALtrust_key_fingerprint"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.trust_key_fingerprint</code></a>.</p>
+</div>
 </div>
 
-<pre><span id="VALserver_cert_fingerprint"><span class="keyword">val</span> server_cert_fingerprint</span> : <code class="type">?time:float -><br>       hash:Nocrypto.Hash.hash -><br>       fingerprints:(string * Cstruct.t) list -> <a href="X509.Authenticator.html#TYPEa">a</a></code></pre><div class="info ">
-<span class="warning">Deprecated.</span>"Pin public keys, not certificates (use <a href="X509.Authenticator.html#VALserver_key_fingerprint"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Authenticator</span>.server_key_fingerprint</code></a> instead)."<br>
-<code class="code">server_cert_fingerprint&nbsp;~time&nbsp;hash&nbsp;fingerprints</code> is an
+<pre><span id="VALserver_cert_fingerprint"><span class="keyword">val</span> server_cert_fingerprint</span> : <code class="type">?time:Ptime.t -><br>       hash:Nocrypto.Hash.hash -><br>       fingerprints:(string * Cstruct.t) list -> <a href="X509.Authenticator.html#TYPEa">a</a></code></pre><div class="info ">
+<div class="info-deprecated">
+<span class="warning">Deprecated.</span>"Pin public keys, not certificates (use <a href="X509.Authenticator.html#VALserver_key_fingerprint"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Authenticator</span>.server_key_fingerprint</code></a> instead)."</div>
+<div class="info-desc">
+<p><code class="code">server_cert_fingerprint&nbsp;~time&nbsp;hash&nbsp;fingerprints</code> is an
       <code class="code">authenticator</code> which uses the given <code class="code">time</code> and list of
       <code class="code">fingerprints</code> to verify the first element of the certificate
-      chain, using <a href="X509.Validation.html#VALtrust_cert_fingerprint"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.trust_cert_fingerprint</code></a>.<br>
+      chain, using <a href="X509.Validation.html#VALtrust_cert_fingerprint"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.trust_cert_fingerprint</code></a>.</p>
+</div>
 </div>
 
 <pre><span id="VALnull"><span class="keyword">val</span> null</span> : <code class="type"><a href="X509.Authenticator.html#TYPEa">a</a></code></pre><div class="info ">
-<code class="code">null</code> is <code class="code">authenticator</code>, which always returns <code class="code"><span class="keywordsign">`</span><span class="constructor">Ok</span></code>. (Useful
-      for testing purposes only.)<br>
+<div class="info-desc">
+<p><code class="code">null</code> is <code class="code">authenticator</code>, which always returns <code class="code"><span class="keywordsign">`</span><span class="constructor">Ok</span></code>. (Useful
+      for testing purposes only.)</p>
+</div>
 </div>
 
 <pre><span id="VALa_of_sexp"><span class="keyword">val</span> a_of_sexp</span> : <code class="type">Sexplib.Sexp.t -> <a href="X509.Authenticator.html#TYPEa">a</a></code></pre><div class="info ">
-<code class="code">a_of_sexp&nbsp;sexp</code> is <code class="code">authenticator</code>, the unmarshalled
-  <code class="code">sexp</code>.  Note: only <a href="X509.Authenticator.html#VALnull"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Authenticator</span>.null</code></a> is supported.<br>
+<div class="info-desc">
+<p><code class="code">a_of_sexp&nbsp;sexp</code> is <code class="code">authenticator</code>, the unmarshalled
+  <code class="code">sexp</code>.  Note: only <a href="X509.Authenticator.html#VALnull"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Authenticator</span>.null</code></a> is supported.</p>
+</div>
 </div>
 
 <pre><span id="VALsexp_of_a"><span class="keyword">val</span> sexp_of_a</span> : <code class="type"><a href="X509.Authenticator.html#TYPEa">a</a> -> Sexplib.Sexp.t</code></pre><div class="info ">
-<code class="code">sexp_of_a&nbsp;authenticator</code> is <code class="code">sexp</code>, the marshalled
-  <code class="code">authenticator</code>.  Note: always emits <a href="X509.Authenticator.html#VALnull"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Authenticator</span>.null</code></a>.<br>
+<div class="info-desc">
+<p><code class="code">sexp_of_a&nbsp;authenticator</code> is <code class="code">sexp</code>, the marshalled
+  <code class="code">authenticator</code>.  Note: always emits <a href="X509.Authenticator.html#VALnull"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Authenticator</span>.null</code></a>.</p>
+</div>
 </div>
 </body></html>

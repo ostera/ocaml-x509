@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="X509.CA.html">
+<link rel="next" href="X509.Validation.html">
+<link rel="Up" href="X509.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="X509" rel="Chapter" href="X509.html"><title>X509.CRL</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="X509.CA.html" title="X509.CA">Previous</a>
+&nbsp;<a class="up" href="X509.html" title="X509">Up</a>
+&nbsp;<a class="post" href="X509.Validation.html" title="X509.Validation">Next</a>
+</div>
+<h1>Module <a href="type_X509.CRL.html">X509.CRL</a></h1>
+
+<pre><span id="MODULECRL"><span class="keyword">module</span> CRL</span>: <code class="code"><span class="keyword">sig</span></code> <a href="X509.CRL.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>X.509 Certificate Revocation Lists.</p>
+</div>
+</div>
+<hr width="100%">
+<p>A certificate revocation list is a signed structure consisting of an
+      issuer, a timestamp, possibly a timestamp when to expect the next update,
+      and a list of revoked certificates (represented by a serial, a revocation
+      date, and extensions (e.g. reason) - see RFC 5280 section 5.2 for a list
+      of available extensions (not enforced)).  It also may contain any
+      extensions, e.g. a CRL number and whether it is partial or complete.</p>
+
+<pre><span id="TYPEc"><span class="keyword">type</span> <code class="type"></code>c</span> </pre>
+<div class="info ">
+<div class="info-desc">
+<p>The type of a revocation list, kept abstract.</p>
+</div>
+</div>
+
+
+<pre><span id="VALissuer"><span class="keyword">val</span> issuer</span> : <code class="type"><a href="X509.CRL.html#TYPEc">c</a> -> <a href="X509.html#TYPEdistinguished_name">X509.distinguished_name</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">issuer&nbsp;c</code> is the issuer of the revocation list.</p>
+</div>
+</div>
+
+<pre><span id="VALthis_update"><span class="keyword">val</span> this_update</span> : <code class="type"><a href="X509.CRL.html#TYPEc">c</a> -> Ptime.t</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">this_update&nbsp;t</code> is the timestamp of the revocation list.</p>
+</div>
+</div>
+
+<pre><span id="VALnext_update"><span class="keyword">val</span> next_update</span> : <code class="type"><a href="X509.CRL.html#TYPEc">c</a> -> Ptime.t option</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">next_update&nbsp;t</code> is either <code class="code"><span class="constructor">None</span></code> or <code class="code"><span class="constructor">Some</span>&nbsp;ts</code>, the timestamp of the next
+      update.</p>
+</div>
+</div>
+
+<pre><code><span id="TYPErevoked_cert"><span class="keyword">type</span> <code class="type"></code>revoked_cert</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTrevoked_cert.serial">serial</span>&nbsp;: <code class="type">Z.t</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTrevoked_cert.date">date</span>&nbsp;: <code class="type">Ptime.t</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTrevoked_cert.extensions">extensions</span>&nbsp;: <code class="type">(bool * <a href="X509.Extension.html#TYPEt">X509.Extension.t</a>) list</code>;</code></td>
+
+</tr></table>
+}
+
+<div class="info ">
+<div class="info-desc">
+<p>The type of a revoked certificate, which consists of a serial number, the
+      revocation date, and possibly extensions.  See RFC 5280 setion 5.3 for
+      allowed extensions (not enforced).</p>
+</div>
+</div>
+
+
+<pre><span id="VALreason"><span class="keyword">val</span> reason</span> : <code class="type"><a href="X509.CRL.html#TYPErevoked_cert">revoked_cert</a> -> <a href="X509.Extension.html#TYPEreason_code">X509.Extension.reason_code</a> option</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">reason&nbsp;revoked</code> extracts the <code class="code"><span class="constructor">Reason</span></code> extension from <code class="code">revoked</code> if
+      present.</p>
+</div>
+</div>
+
+<pre><span id="VALrevoked_certificates"><span class="keyword">val</span> revoked_certificates</span> : <code class="type"><a href="X509.CRL.html#TYPEc">c</a> -> <a href="X509.CRL.html#TYPErevoked_cert">revoked_cert</a> list</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">revoked_certificates&nbsp;t</code> is the list of revoked certificates of the
+      revocation list.</p>
+</div>
+</div>
+
+<pre><span id="VALextensions"><span class="keyword">val</span> extensions</span> : <code class="type"><a href="X509.CRL.html#TYPEc">c</a> -> (bool * <a href="X509.Extension.html#TYPEt">X509.Extension.t</a>) list</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">extensions&nbsp;t</code> is the list of extensions, see RFC 5280 section 5.2 for
+      possible values.</p>
+</div>
+</div>
+
+<pre><span id="VALcrl_number"><span class="keyword">val</span> crl_number</span> : <code class="type"><a href="X509.CRL.html#TYPEc">c</a> -> int option</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">crl_number&nbsp;t</code> is the number of the CRL.</p>
+</div>
+</div>
+
+<pre><span id="VALvalidate"><span class="keyword">val</span> validate</span> : <code class="type"><a href="X509.CRL.html#TYPEc">c</a> -> <a href="X509.html#TYPEpublic_key">X509.public_key</a> -> bool</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">validate&nbsp;t&nbsp;pk</code> validates the digital signature of the revocation list.</p>
+</div>
+</div>
+
+<pre><span id="VALverify"><span class="keyword">val</span> verify</span> : <code class="type"><a href="X509.CRL.html#TYPEc">c</a> -> ?time:Ptime.t -> <a href="X509.html#TYPEt">X509.t</a> -> bool</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">verify&nbsp;t&nbsp;~time&nbsp;cert</code> verifies that the issuer of <code class="code">t</code> matches the subject
+      of <code class="code">cert</code>, and validates the digital signature of the revocation list.  If
+      <code class="code">time</code> is provided, it must be after <code class="code">this_update</code> and before
+      <code class="code">next_update</code> of <code class="code">t</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALis_revoked"><span class="keyword">val</span> is_revoked</span> : <code class="type"><a href="X509.CRL.html#TYPEc">c</a> list -> issuer:<a href="X509.html#TYPEt">X509.t</a> -> cert:<a href="X509.html#TYPEt">X509.t</a> -> bool</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">is_revoked&nbsp;crls&nbsp;~issuer&nbsp;~cert</code> is <code class="code"><span class="keyword">true</span></code> if there exists a revocation of
+      <code class="code">cert</code> in <code class="code">crls</code> which is signed by the <code class="code">issuer</code>.  The subject of <code class="code">issuer</code>
+      must match the issuer of the crl.</p>
+</div>
+</div>
+
+<pre><span id="VALrevoke"><span class="keyword">val</span> revoke</span> : <code class="type">?digest:Nocrypto.Hash.hash -><br>       issuer:<a href="X509.html#TYPEdistinguished_name">X509.distinguished_name</a> -><br>       this_update:Ptime.t -><br>       ?next_update:Ptime.t -><br>       ?extensions:(bool * <a href="X509.Extension.html#TYPEt">X509.Extension.t</a>) list -><br>       <a href="X509.CRL.html#TYPErevoked_cert">revoked_cert</a> list -> <a href="X509.html#TYPEprivate_key">X509.private_key</a> -> <a href="X509.CRL.html#TYPEc">c</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">revoked&nbsp;~digest&nbsp;~issuer&nbsp;~this_update&nbsp;~next_update&nbsp;~extensions&nbsp;certs&nbsp;priv</code>
+      constructs a revocation list with the given parameters.</p>
+</div>
+</div>
+
+<pre><span id="VALrevoke_certificate"><span class="keyword">val</span> revoke_certificate</span> : <code class="type"><a href="X509.CRL.html#TYPErevoked_cert">revoked_cert</a> -><br>       this_update:Ptime.t -><br>       ?next_update:Ptime.t -> <a href="X509.CRL.html#TYPEc">c</a> -> <a href="X509.html#TYPEprivate_key">X509.private_key</a> -> <a href="X509.CRL.html#TYPEc">c</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">revoke_certificate&nbsp;cert&nbsp;~this_update&nbsp;~next_update&nbsp;t&nbsp;priv</code> adds <code class="code">cert</code> to
+      the revocation list, increments its counter, adjusts <code class="code">this_update</code> and
+      <code class="code">next_update</code> timestamps, and digitally signs it using <code class="code">priv</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALrevoke_certificates"><span class="keyword">val</span> revoke_certificates</span> : <code class="type"><a href="X509.CRL.html#TYPErevoked_cert">revoked_cert</a> list -><br>       this_update:Ptime.t -><br>       ?next_update:Ptime.t -> <a href="X509.CRL.html#TYPEc">c</a> -> <a href="X509.html#TYPEprivate_key">X509.private_key</a> -> <a href="X509.CRL.html#TYPEc">c</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">revoke_certificates&nbsp;certs&nbsp;~this_update&nbsp;~next_update&nbsp;t&nbsp;priv</code> adds <code class="code">certs</code>
+      to the revocation list, increments its counter, adjusts <code class="code">this_update</code> and
+      <code class="code">next_update</code> timestamps, and digitally signs it using <code class="code">priv</code>.</p>
+</div>
+</div>
+</body></html>

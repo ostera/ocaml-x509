@@ -11,13 +11,15 @@
 <body>
 <code class="code"><span class="keyword">sig</span><br>
 &nbsp;&nbsp;<span class="keyword">type</span>&nbsp;a&nbsp;=&nbsp;?host:<span class="constructor">X509</span>.host&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.<span class="constructor">Validation</span>.result<br>
-&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;chain_of_trust&nbsp;:&nbsp;?time:float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.<span class="constructor">Authenticator</span>.a<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;chain_of_trust&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;?time:<span class="constructor">Ptime</span>.t&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;?crls:<span class="constructor">X509</span>.<span class="constructor">CRL</span>.c&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.<span class="constructor">Authenticator</span>.a<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;server_key_fingerprint&nbsp;:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;?time:float&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;?time:<span class="constructor">Ptime</span>.t&nbsp;<span class="keywordsign">-&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;hash:<span class="constructor">Nocrypto</span>.<span class="constructor">Hash</span>.hash&nbsp;<span class="keywordsign">-&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;fingerprints:(string&nbsp;*&nbsp;<span class="constructor">Cstruct</span>.t)&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.<span class="constructor">Authenticator</span>.a<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;server_cert_fingerprint&nbsp;:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;?time:float&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;?time:<span class="constructor">Ptime</span>.t&nbsp;<span class="keywordsign">-&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;hash:<span class="constructor">Nocrypto</span>.<span class="constructor">Hash</span>.hash&nbsp;<span class="keywordsign">-&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;fingerprints:(string&nbsp;*&nbsp;<span class="constructor">Cstruct</span>.t)&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.<span class="constructor">Authenticator</span>.a<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;null&nbsp;:&nbsp;<span class="constructor">X509</span>.<span class="constructor">Authenticator</span>.a<br>

@@ -21,6 +21,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Nocrypto</span>.<span class="constructor">Hash</span>.hash&nbsp;*&nbsp;<span class="constructor">Cstruct</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Cstruct</span>.t<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;rsa_public_to_cstruct&nbsp;:&nbsp;<span class="constructor">Nocrypto</span>.<span class="constructor">Rsa</span>.pub&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Cstruct</span>.t<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;rsa_public_of_cstruct&nbsp;:&nbsp;<span class="constructor">Cstruct</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Nocrypto</span>.<span class="constructor">Rsa</span>.pub&nbsp;option<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;crl_to_cstruct&nbsp;:&nbsp;<span class="constructor">X509</span>.<span class="constructor">CRL</span>.c&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Cstruct</span>.t<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;crl_of_cstruct&nbsp;:&nbsp;<span class="constructor">Cstruct</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.<span class="constructor">CRL</span>.c&nbsp;option<br>
 &nbsp;&nbsp;<span class="keyword">module</span>&nbsp;<span class="constructor">Pem</span>&nbsp;:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">sig</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;parse&nbsp;:&nbsp;<span class="constructor">Cstruct</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;(string&nbsp;*&nbsp;<span class="constructor">Cstruct</span>.t)&nbsp;list<br>

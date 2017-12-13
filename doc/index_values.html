@@ -14,438 +14,638 @@
 &nbsp;</div>
 <h1>Index of values</h1>
 <table>
-<tr><td align="left"><br>A</td></tr>
+<tr><td align="left"><div>A</div></td></tr>
 <tr><td><a href="X509.Authenticator.html#VALa_of_sexp">a_of_sexp</a> [<a href="X509.Authenticator.html">X509.Authenticator</a>]</td>
 <td><div class="info">
-<code class="code">a_of_sexp&nbsp;sexp</code> is <code class="code">authenticator</code>, the unmarshalled
-  <code class="code">sexp</code>.
+<p><code class="code">a_of_sexp&nbsp;sexp</code> is <code class="code">authenticator</code>, the unmarshalled
+  <code class="code">sexp</code>.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>B</td></tr>
+<tr><td align="left"><div>B</div></td></tr>
+<tr><td><a href="X509.Extension.html#VALbasic_constraints">basic_constraints</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
+<td><div class="info">
+<p><code class="code">basic_constraints&nbsp;cert</code> extracts the BasicConstraints extension, if present.</p>
+
+</div>
+</td></tr>
 <tr><td><a href="X509.Validation.html#VALbuild_paths">build_paths</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-<code class="code">build_paths&nbsp;server&nbsp;rest</code> is <code class="code">paths</code>, which are all possible certificate
-      paths starting with <code class="code">server</code>.
+<p><code class="code">build_paths&nbsp;server&nbsp;rest</code> is <code class="code">paths</code>, which are all possible certificate
+      paths starting with <code class="code">server</code>.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>C</td></tr>
+<tr><td align="left"><div>C</div></td></tr>
 <tr><td><a href="X509.Validation.html#VALca_error_of_sexp">ca_error_of_sexp</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-<code class="code">ca_error_of_sexp&nbsp;sexp</code> is <code class="code">ca_error</code>, the unmarshalled <code class="code">sexp</code>.
+<p><code class="code">ca_error_of_sexp&nbsp;sexp</code> is <code class="code">ca_error</code>, the unmarshalled <code class="code">sexp</code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Validation.html#VALca_error_to_string">ca_error_to_string</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-<code class="code">ca_error_to_string&nbsp;validation_error</code> is <code class="code">string</code>, the string representation of the <code class="code">ca_error</code>.
+<p><code class="code">ca_error_to_string&nbsp;validation_error</code> is <code class="code">string</code>, the string representation of the <code class="code">ca_error</code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Validation.html#VALchain_error_of_sexp">chain_error_of_sexp</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-<code class="code">chain_error_of_sexp&nbsp;sexp</code> is <code class="code">chain_error</code>, the unmarshalled <code class="code">sexp</code>.
+<p><code class="code">chain_error_of_sexp&nbsp;sexp</code> is <code class="code">chain_error</code>, the unmarshalled <code class="code">sexp</code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Validation.html#VALchain_error_to_string">chain_error_to_string</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-<code class="code">chain_error_to_string&nbsp;validation_error</code> is <code class="code">string</code>, the string representation of the <code class="code">chain_error</code>.
+<p><code class="code">chain_error_to_string&nbsp;validation_error</code> is <code class="code">string</code>, the string representation of the <code class="code">chain_error</code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Authenticator.html#VALchain_of_trust">chain_of_trust</a> [<a href="X509.Authenticator.html">X509.Authenticator</a>]</td>
 <td><div class="info">
-<code class="code">chain_of_trust&nbsp;?time&nbsp;trust_anchors</code> is <code class="code">authenticator</code>, which
+<p><code class="code">chain_of_trust&nbsp;?time&nbsp;trust_anchors</code> is <code class="code">authenticator</code>, which
       uses the given <code class="code">time</code> and list of <code class="code">trust_anchors</code> to verify the
-      certificate chain.
+      certificate chain.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.html#VALcommon_name_to_string">common_name_to_string</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-<code class="code">common_name_to_string&nbsp;certificate</code> is <code class="code">common_name</code>, the common
-    name of the subject of the <code class="code">certificate</code>.
+<p><code class="code">common_name_to_string&nbsp;certificate</code> is <code class="code">common_name</code>, the common
+    name of the subject of the <code class="code">certificate</code>.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="X509.Extension.html#VALcrl_distribution_points">crl_distribution_points</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
+<td><div class="info">
+<p>Returns <code class="code">crl_distribution_points</code> if extension if present, else <code class="code">&nbsp;[]&nbsp;</code>.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="X509.CRL.html#VALcrl_number">crl_number</a> [<a href="X509.CRL.html">X509.CRL</a>]</td>
+<td><div class="info">
+<p><code class="code">crl_number&nbsp;t</code> is the number of the CRL.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="X509.Encoding.html#VALcrl_of_cstruct">crl_of_cstruct</a> [<a href="X509.Encoding.html">X509.Encoding</a>]</td>
+<td><div class="info">
+<p><code class="code">crl_of_cstruct&nbsp;buffer</code> is <code class="code">crl</code>, the certificate revocation list of
+      the ASN.1 encoded buffer.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="X509.Encoding.html#VALcrl_to_cstruct">crl_to_cstruct</a> [<a href="X509.Encoding.html">X509.Encoding</a>]</td>
+<td><div class="info">
+<p><code class="code">crl_to_cstruct&nbsp;crl</code> is <code class="code">buffer</code>, the ASN.1 DER encoding of the
+      given certificate revocation list.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.html#VALcs_of_cert">cs_of_cert</a> [<a href="X509.Encoding.html">X509.Encoding</a>]</td>
 <td><div class="info">
-<code class="code">cs_of_cert&nbsp;certificate</code> is <code class="code">cstruct</code>, the ASN.1 encoded
-      representation of the <code class="code">certificate</code>.
+<p><code class="code">cs_of_cert&nbsp;certificate</code> is <code class="code">cstruct</code>, the ASN.1 encoded
+      representation of the <code class="code">certificate</code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.html#VALcs_of_distinguished_name">cs_of_distinguished_name</a> [<a href="X509.Encoding.html">X509.Encoding</a>]</td>
 <td><div class="info">
-<code class="code">cs_of_distinguished_name&nbsp;dn</code> is <code class="code">cstruct</code>, the ASN.1 encoded
-      representation of the distinguished name <code class="code">dn</code>.
+<p><code class="code">cs_of_distinguished_name&nbsp;dn</code> is <code class="code">cstruct</code>, the ASN.1 encoded
+      representation of the distinguished name <code class="code">dn</code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.html#VALcs_of_signing_request">cs_of_signing_request</a> [<a href="X509.Encoding.html">X509.Encoding</a>]</td>
 <td><div class="info">
-<code class="code">cs_of_signing_request&nbsp;sr</code> is <code class="code">cstruct</code>, the ASN.1 encoded
-      representation of the <code class="code">sr</code>.
+<p><code class="code">cs_of_signing_request&nbsp;sr</code> is <code class="code">cstruct</code>, the ASN.1 encoded
+      representation of the <code class="code">sr</code>.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>D</td></tr>
+<tr><td align="left"><div>D</div></td></tr>
 <tr><td><a href="X509.html#VALdistinguished_name_to_string">distinguished_name_to_string</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-<code class="code">distinguished_name_to_string&nbsp;dn</code> is <code class="code">string</code>, the string
-    representation of the <a href="X509.html#TYPEdistinguished_name">dn</a>.
+<p><code class="code">distinguished_name_to_string&nbsp;dn</code> is <code class="code">string</code>, the string
+    representation of the <a href="X509.html#TYPEdistinguished_name">dn</a>.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>F</td></tr>
+<tr><td align="left"><div>E</div></td></tr>
+<tr><td><a href="X509.CRL.html#VALextensions">extensions</a> [<a href="X509.CRL.html">X509.CRL</a>]</td>
+<td><div class="info">
+<p><code class="code">extensions&nbsp;t</code> is the list of extensions, see RFC 5280 section 5.2 for
+      possible values.</p>
+
+</div>
+</td></tr>
+<tr><td align="left"><div>F</div></td></tr>
 <tr><td><a href="X509.html#VALfingerprint">fingerprint</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-<code class="code">fingerprint&nbsp;hash&nbsp;cert</code> is <code class="code">digest</code>,
-    the digest of <code class="code">cert</code> using the specified <code class="code">hash</code> algorithm
+<p><code class="code">fingerprint&nbsp;hash&nbsp;cert</code> is <code class="code">digest</code>,
+    the digest of <code class="code">cert</code> using the specified <code class="code">hash</code> algorithm</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>H</td></tr>
+<tr><td align="left"><div>H</div></td></tr>
 <tr><td><a href="X509.html#VALhostnames">hostnames</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-<code class="code">hostnames&nbsp;certficate</code> are <code class="code">hostnames</code>, the list of hostnames this
-    <code class="code">certificate</code> is valid for.
+<p><code class="code">hostnames&nbsp;certficate</code> are <code class="code">hostnames</code>, the list of hostnames this
+    <code class="code">certificate</code> is valid for.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>I</td></tr>
+<tr><td align="left"><div>I</div></td></tr>
 <tr><td><a href="X509.CA.html#VALinfo">info</a> [<a href="X509.CA.html">X509.CA</a>]</td>
 <td><div class="info">
-<code class="code">info&nbsp;signing_request</code> is <a href="X509.CA.html#TYPErequest_info"><code class="code"><span class="constructor">X509</span>.<span class="constructor">CA</span>.request_info</code></a>, the information
-      inside the <a href="X509.CA.html#TYPEsigning_request"><code class="code"><span class="constructor">X509</span>.<span class="constructor">CA</span>.signing_request</code></a>.
+<p><code class="code">info&nbsp;signing_request</code> is <a href="X509.CA.html#TYPErequest_info"><code class="code"><span class="constructor">X509</span>.<span class="constructor">CA</span>.request_info</code></a>, the information
+      inside the <a href="X509.CA.html#TYPEsigning_request"><code class="code"><span class="constructor">X509</span>.<span class="constructor">CA</span>.signing_request</code></a>.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="X509.CRL.html#VALis_revoked">is_revoked</a> [<a href="X509.CRL.html">X509.CRL</a>]</td>
+<td><div class="info">
+<p><code class="code">is_revoked&nbsp;crls&nbsp;~issuer&nbsp;~cert</code> is <code class="code"><span class="keyword">true</span></code> if there exists a revocation of
+      <code class="code">cert</code> in <code class="code">crls</code> which is signed by the <code class="code">issuer</code>.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="X509.CRL.html#VALissuer">issuer</a> [<a href="X509.CRL.html">X509.CRL</a>]</td>
+<td><div class="info">
+<p><code class="code">issuer&nbsp;c</code> is the issuer of the revocation list.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.html#VALissuer">issuer</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-<code class="code">issuer&nbsp;certificate</code> is <code class="code">dn</code>, the issuer as
-    <a href="X509.html#TYPEdistinguished_name">dn</a> of the <code class="code">certificate</code>.
+<p><code class="code">issuer&nbsp;certificate</code> is <code class="code">dn</code>, the issuer as
+    <a href="X509.html#TYPEdistinguished_name">dn</a> of the <code class="code">certificate</code>.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>K</td></tr>
+<tr><td align="left"><div>K</div></td></tr>
 <tr><td><a href="X509.html#VALkey_fingerprint">key_fingerprint</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-<code class="code">key_fingerprint&nbsp;?hash&nbsp;public_key</code> is <code class="code">result</code>, the hash (by
+<p><code class="code">key_fingerprint&nbsp;?hash&nbsp;public_key</code> is <code class="code">result</code>, the hash (by
     default SHA256) of the DER encoded public key (equivalent to
     `openssl x509 -noout -pubkey | openssl pkey -pubin -outform DER |
-    openssl dgst -HASH`).
+    openssl dgst -HASH`).</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.html#VALkey_id">key_id</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-<code class="code">key_id&nbsp;public_key</code> is <code class="code">result</code>, the 160-bit <code class="code"><span class="keywordsign">`</span><span class="constructor">SHA1</span></code> hash of the BIT
+<p><code class="code">key_id&nbsp;public_key</code> is <code class="code">result</code>, the 160-bit <code class="code"><span class="keywordsign">`</span><span class="constructor">SHA1</span></code> hash of the BIT
     STRING subjectPublicKey (excluding tag, length, and number of
-    unused bits) for publicKeyInfo of <code class="code">public_key</code>.
+    unused bits) for publicKeyInfo of <code class="code">public_key</code>.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>N</td></tr>
+<tr><td align="left"><div>N</div></td></tr>
+<tr><td><a href="X509.CRL.html#VALnext_update">next_update</a> [<a href="X509.CRL.html">X509.CRL</a>]</td>
+<td><div class="info">
+<p><code class="code">next_update&nbsp;t</code> is either <code class="code"><span class="constructor">None</span></code> or <code class="code"><span class="constructor">Some</span>&nbsp;ts</code>, the timestamp of the next
+      update.</p>
+
+</div>
+</td></tr>
 <tr><td><a href="X509.Authenticator.html#VALnull">null</a> [<a href="X509.Authenticator.html">X509.Authenticator</a>]</td>
 <td><div class="info">
-<code class="code">null</code> is <code class="code">authenticator</code>, which always returns <code class="code"><span class="keywordsign">`</span><span class="constructor">Ok</span></code>.
+<p><code class="code">null</code> is <code class="code">authenticator</code>, which always returns <code class="code"><span class="keywordsign">`</span><span class="constructor">Ok</span></code>.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>O</td></tr>
+<tr><td align="left"><div>O</div></td></tr>
 <tr><td><a href="X509.Encoding.Pem.Private_key.html#VALof_pem_cstruct">of_pem_cstruct</a> [<a href="X509.Encoding.Pem.Private_key.html">X509.Encoding.Pem.Private_key</a>]</td>
 <td><div class="info">
-<code class="code">of_pem_cstruct&nbsp;pem</code> is <code class="code">t&nbsp;list</code>, where all private keys of
-          <code class="code">pem</code> are extracted
+<p><code class="code">of_pem_cstruct&nbsp;pem</code> is <code class="code">t&nbsp;list</code>, where all private keys of
+          <code class="code">pem</code> are extracted</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.Pem.Public_key.html#VALof_pem_cstruct">of_pem_cstruct</a> [<a href="X509.Encoding.Pem.Public_key.html">X509.Encoding.Pem.Public_key</a>]</td>
 <td><div class="info">
-<code class="code">of_pem_cstruct&nbsp;pem</code> is <code class="code">t&nbsp;list</code>, where all public keys of
-          <code class="code">pem</code> are extracted
+<p><code class="code">of_pem_cstruct&nbsp;pem</code> is <code class="code">t&nbsp;list</code>, where all public keys of
+          <code class="code">pem</code> are extracted</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.Pem.Certificate_signing_request.html#VALof_pem_cstruct">of_pem_cstruct</a> [<a href="X509.Encoding.Pem.Certificate_signing_request.html">X509.Encoding.Pem.Certificate_signing_request</a>]</td>
 <td><div class="info">
-<code class="code">of_pem_cstruct&nbsp;pem</code> is <code class="code">t&nbsp;list</code>, where all signing requests
-          of the <code class="code">pem</code> are extracted
+<p><code class="code">of_pem_cstruct&nbsp;pem</code> is <code class="code">t&nbsp;list</code>, where all signing requests
+          of the <code class="code">pem</code> are extracted</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.Pem.Certificate.html#VALof_pem_cstruct">of_pem_cstruct</a> [<a href="X509.Encoding.Pem.Certificate.html">X509.Encoding.Pem.Certificate</a>]</td>
 <td><div class="info">
-<code class="code">of_pem_cstruct&nbsp;pem</code> is <code class="code">t&nbsp;list</code>, where all certificates of
-          the <code class="code">pem</code> are extracted
+<p><code class="code">of_pem_cstruct&nbsp;pem</code> is <code class="code">t&nbsp;list</code>, where all certificates of
+          the <code class="code">pem</code> are extracted</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.Pem.Private_key.html#VALof_pem_cstruct1">of_pem_cstruct1</a> [<a href="X509.Encoding.Pem.Private_key.html">X509.Encoding.Pem.Private_key</a>]</td>
 <td><div class="info">
-<code class="code">of_pem_cstruct1&nbsp;pem</code> is <code class="code">t</code>, where the private key of <code class="code">pem</code>
-          is extracted
+<p><code class="code">of_pem_cstruct1&nbsp;pem</code> is <code class="code">t</code>, where the private key of <code class="code">pem</code>
+          is extracted</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.Pem.Public_key.html#VALof_pem_cstruct1">of_pem_cstruct1</a> [<a href="X509.Encoding.Pem.Public_key.html">X509.Encoding.Pem.Public_key</a>]</td>
 <td><div class="info">
-<code class="code">of_pem_cstruct1&nbsp;pem</code> is <code class="code">t</code>, where the public key of <code class="code">pem</code>
-          is extracted
+<p><code class="code">of_pem_cstruct1&nbsp;pem</code> is <code class="code">t</code>, where the public key of <code class="code">pem</code>
+          is extracted</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.Pem.Certificate_signing_request.html#VALof_pem_cstruct1">of_pem_cstruct1</a> [<a href="X509.Encoding.Pem.Certificate_signing_request.html">X509.Encoding.Pem.Certificate_signing_request</a>]</td>
 <td><div class="info">
-<code class="code">of_pem_cstruct1&nbsp;pem</code> is <code class="code">t</code>, where the single signing
-          request of the <code class="code">pem</code> is extracted
+<p><code class="code">of_pem_cstruct1&nbsp;pem</code> is <code class="code">t</code>, where the single signing
+          request of the <code class="code">pem</code> is extracted</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.Pem.Certificate.html#VALof_pem_cstruct1">of_pem_cstruct1</a> [<a href="X509.Encoding.Pem.Certificate.html">X509.Encoding.Pem.Certificate</a>]</td>
 <td><div class="info">
-<code class="code">of_pem_cstruct1&nbsp;pem</code> is <code class="code">t</code>, where the single certificate
-          of the <code class="code">pem</code> is extracted
+<p><code class="code">of_pem_cstruct1&nbsp;pem</code> is <code class="code">t</code>, where the single certificate
+          of the <code class="code">pem</code> is extracted</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>P</td></tr>
+<tr><td align="left"><div>P</div></td></tr>
 <tr><td><a href="X509.Encoding.Pem.html#VALparse">parse</a> [<a href="X509.Encoding.Pem.html">X509.Encoding.Pem</a>]</td>
 <td><div class="info">
-<code class="code">parse&nbsp;pem</code> is <code class="code">(name&nbsp;*&nbsp;data)&nbsp;list</code>, in which the <code class="code">pem</code> is
+<p><code class="code">parse&nbsp;pem</code> is <code class="code">(name&nbsp;*&nbsp;data)&nbsp;list</code>, in which the <code class="code">pem</code> is
         parsed into its components, each surrounded by <code class="code"><span class="constructor">BEGIN</span>&nbsp;name</code> and
-        <code class="code"><span class="constructor">END</span>&nbsp;name</code>.
+        <code class="code"><span class="constructor">END</span>&nbsp;name</code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.html#VALparse">parse</a> [<a href="X509.Encoding.html">X509.Encoding</a>]</td>
 <td><div class="info">
-<code class="code">parse&nbsp;cstruct</code> is <code class="code">certificate&nbsp;option</code>, the ASN.1 decoded
-      <code class="code">certificate</code> or <code class="code"><span class="constructor">None</span></code>.
+<p><code class="code">parse&nbsp;cstruct</code> is <code class="code">certificate&nbsp;option</code>, the ASN.1 decoded
+      <code class="code">certificate</code> or <code class="code"><span class="constructor">None</span></code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.html#VALparse_signing_request">parse_signing_request</a> [<a href="X509.Encoding.html">X509.Encoding</a>]</td>
 <td><div class="info">
-<code class="code">parse_signing_request&nbsp;cstruct</code> is <code class="code">signing_request&nbsp;option</code>,
-      the ASN.1 decoded <code class="code">cstruct</code> or <code class="code"><span class="constructor">None</span></code>.
+<p><code class="code">parse_signing_request&nbsp;cstruct</code> is <code class="code">signing_request&nbsp;option</code>,
+      the ASN.1 decoded <code class="code">cstruct</code> or <code class="code"><span class="constructor">None</span></code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.html#VALpkcs1_digest_info_of_cstruct">pkcs1_digest_info_of_cstruct</a> [<a href="X509.Encoding.html">X509.Encoding</a>]</td>
 <td><div class="info">
-<code class="code">pkcs1_digest_info_of_cstruct&nbsp;data</code> is <code class="code">hash,&nbsp;signature&nbsp;option</code>,
-      the hash and raw signature.
+<p><code class="code">pkcs1_digest_info_of_cstruct&nbsp;data</code> is <code class="code">hash,&nbsp;signature&nbsp;option</code>,
+      the hash and raw signature.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.html#VALpkcs1_digest_info_to_cstruct">pkcs1_digest_info_to_cstruct</a> [<a href="X509.Encoding.html">X509.Encoding</a>]</td>
 <td><div class="info">
-<code class="code">pkcs1_digest_info_to_cstruct&nbsp;(hash,&nbsp;signature)</code> is <code class="code">data</code>, the
-      encoded hash and signature.
+<p><code class="code">pkcs1_digest_info_to_cstruct&nbsp;(hash,&nbsp;signature)</code> is <code class="code">data</code>, the
+      encoded hash and signature.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.html#VALpublic_key">public_key</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-<code class="code">public_key&nbsp;certificate</code> is <code class="code">pubkey</code>, the public key of the
-    <code class="code">certificate</code>.
+<p><code class="code">public_key&nbsp;certificate</code> is <code class="code">pubkey</code>, the public key of the
+    <code class="code">certificate</code>.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>R</td></tr>
+<tr><td align="left"><div>R</div></td></tr>
+<tr><td><a href="X509.CRL.html#VALreason">reason</a> [<a href="X509.CRL.html">X509.CRL</a>]</td>
+<td><div class="info">
+<p><code class="code">reason&nbsp;revoked</code> extracts the <code class="code"><span class="constructor">Reason</span></code> extension from <code class="code">revoked</code> if
+      present.</p>
+
+</div>
+</td></tr>
 <tr><td><a href="X509.CA.html#VALrequest">request</a> [<a href="X509.CA.html">X509.CA</a>]</td>
 <td><div class="info">
-<code class="code">request&nbsp;subject&nbsp;~digest&nbsp;~extensions&nbsp;<span class="keyword">private</span></code> creates
+<p><code class="code">request&nbsp;subject&nbsp;~digest&nbsp;~extensions&nbsp;<span class="keyword">private</span></code> creates
       <code class="code">signing_request</code>, a certification request using the given
       <code class="code">subject</code>, <code class="code">digest</code> (defaults to <code class="code"><span class="keywordsign">`</span><span class="constructor">SHA256</span></code>) and list of
-      <code class="code">extensions</code>.
+      <code class="code">extensions</code>.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="X509.CRL.html#VALrevoke">revoke</a> [<a href="X509.CRL.html">X509.CRL</a>]</td>
+<td><div class="info">
+<p><code class="code">revoked&nbsp;~digest&nbsp;~issuer&nbsp;~this_update&nbsp;~next_update&nbsp;~extensions&nbsp;certs&nbsp;priv</code>
+      constructs a revocation list with the given parameters.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="X509.CRL.html#VALrevoke_certificate">revoke_certificate</a> [<a href="X509.CRL.html">X509.CRL</a>]</td>
+<td><div class="info">
+<p><code class="code">revoke_certificate&nbsp;cert&nbsp;~this_update&nbsp;~next_update&nbsp;t&nbsp;priv</code> adds <code class="code">cert</code> to
+      the revocation list, increments its counter, adjusts <code class="code">this_update</code> and
+      <code class="code">next_update</code> timestamps, and digitally signs it using <code class="code">priv</code>.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="X509.CRL.html#VALrevoke_certificates">revoke_certificates</a> [<a href="X509.CRL.html">X509.CRL</a>]</td>
+<td><div class="info">
+<p><code class="code">revoke_certificates&nbsp;certs&nbsp;~this_update&nbsp;~next_update&nbsp;t&nbsp;priv</code> adds <code class="code">certs</code>
+      to the revocation list, increments its counter, adjusts <code class="code">this_update</code> and
+      <code class="code">next_update</code> timestamps, and digitally signs it using <code class="code">priv</code>.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="X509.CRL.html#VALrevoked_certificates">revoked_certificates</a> [<a href="X509.CRL.html">X509.CRL</a>]</td>
+<td><div class="info">
+<p><code class="code">revoked_certificates&nbsp;t</code> is the list of revoked certificates of the
+      revocation list.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.html#VALrsa_public_of_cstruct">rsa_public_of_cstruct</a> [<a href="X509.Encoding.html">X509.Encoding</a>]</td>
 <td><div class="info">
-<code class="code">rsa_public_of_cstruct&nbsp;buffer</code> is <code class="code">pubkey</code>, the public key of
-      the ASN.1 encoded buffer.
+<p><code class="code">rsa_public_of_cstruct&nbsp;buffer</code> is <code class="code">pubkey</code>, the public key of
+      the ASN.1 encoded buffer.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.html#VALrsa_public_to_cstruct">rsa_public_to_cstruct</a> [<a href="X509.Encoding.html">X509.Encoding</a>]</td>
 <td><div class="info">
-<code class="code">rsa_public_to_cstruct&nbsp;pk</code> is <code class="code">buffer</code>, the ASN.1 encoding of the
-      given public key.
+<p><code class="code">rsa_public_to_cstruct&nbsp;pk</code> is <code class="code">buffer</code>, the ASN.1 encoding of the
+      given public key.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>S</td></tr>
+<tr><td align="left"><div>S</div></td></tr>
 <tr><td><a href="X509.html#VALserial">serial</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-<code class="code">serial&nbsp;certificate</code> is <code class="code">sn</code>, the serial number of the
-    <code class="code">certificate</code>.
+<p><code class="code">serial&nbsp;certificate</code> is <code class="code">sn</code>, the serial number of the
+    <code class="code">certificate</code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Authenticator.html#VALserver_cert_fingerprint">server_cert_fingerprint</a> [<a href="X509.Authenticator.html">X509.Authenticator</a>]</td>
 <td><div class="info">
-<span class="deprecated"><code class="code">server_cert_fingerprint&nbsp;~time&nbsp;hash&nbsp;fingerprints</code> is an
+<span class="deprecated"><p><code class="code">server_cert_fingerprint&nbsp;~time&nbsp;hash&nbsp;fingerprints</code> is an
       <code class="code">authenticator</code> which uses the given <code class="code">time</code> and list of
       <code class="code">fingerprints</code> to verify the first element of the certificate
-      chain, using <a href="X509.Validation.html#VALtrust_cert_fingerprint"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.trust_cert_fingerprint</code></a>.
+      chain, using <a href="X509.Validation.html#VALtrust_cert_fingerprint"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.trust_cert_fingerprint</code></a>.</p>
+
 </span></div>
 </td></tr>
 <tr><td><a href="X509.Authenticator.html#VALserver_key_fingerprint">server_key_fingerprint</a> [<a href="X509.Authenticator.html">X509.Authenticator</a>]</td>
 <td><div class="info">
-<code class="code">server_key_fingerprint&nbsp;~time&nbsp;hash&nbsp;fingerprints</code> is an
+<p><code class="code">server_key_fingerprint&nbsp;~time&nbsp;hash&nbsp;fingerprints</code> is an
       <code class="code">authenticator</code> which uses the given <code class="code">time</code> and list of
       <code class="code">fingerprints</code> to verify that the fingerprint of the first
       element of the certificate chain matches the given fingerprint,
-      using <a href="X509.Validation.html#VALtrust_key_fingerprint"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.trust_key_fingerprint</code></a>.
+      using <a href="X509.Validation.html#VALtrust_key_fingerprint"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.trust_key_fingerprint</code></a>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Authenticator.html#VALsexp_of_a">sexp_of_a</a> [<a href="X509.Authenticator.html">X509.Authenticator</a>]</td>
 <td><div class="info">
-<code class="code">sexp_of_a&nbsp;authenticator</code> is <code class="code">sexp</code>, the marshalled
-  <code class="code">authenticator</code>.
+<p><code class="code">sexp_of_a&nbsp;authenticator</code> is <code class="code">sexp</code>, the marshalled
+  <code class="code">authenticator</code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Validation.html#VALsexp_of_ca_error">sexp_of_ca_error</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-<code class="code">sexp_of_ca_error&nbsp;ca_error</code> is <code class="code">sexp</code>, the marshalled <code class="code">ca_error</code>.
+<p><code class="code">sexp_of_ca_error&nbsp;ca_error</code> is <code class="code">sexp</code>, the marshalled <code class="code">ca_error</code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Validation.html#VALsexp_of_chain_error">sexp_of_chain_error</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-<code class="code">sexp_of_chain_error&nbsp;chain_error</code> is <code class="code">sexp</code>, the marshalled <code class="code">chain_error</code>.
+<p><code class="code">sexp_of_chain_error&nbsp;chain_error</code> is <code class="code">sexp</code>, the marshalled <code class="code">chain_error</code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.html#VALsexp_of_t">sexp_of_t</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-<code class="code">sexp_of_t&nbsp;certificate</code> is <code class="code">sexp</code>, the marshalled <code class="code">certificate</code>.
+<p><code class="code">sexp_of_t&nbsp;certificate</code> is <code class="code">sexp</code>, the marshalled <code class="code">certificate</code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Validation.html#VALsexp_of_validation_error">sexp_of_validation_error</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-<code class="code">sexp_of_validation_error&nbsp;validation_error</code> is <code class="code">sexp</code>, the marshalled <code class="code">validation_error</code>.
+<p><code class="code">sexp_of_validation_error&nbsp;validation_error</code> is <code class="code">sexp</code>, the marshalled <code class="code">validation_error</code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.CA.html#VALsign">sign</a> [<a href="X509.CA.html">X509.CA</a>]</td>
 <td><div class="info">
-<code class="code">sign&nbsp;signing_request&nbsp;~digest&nbsp;~valid_from&nbsp;~valid_until&nbsp;~serial<br>
+<p><code class="code">sign&nbsp;signing_request&nbsp;~digest&nbsp;~valid_from&nbsp;~valid_until&nbsp;~serial<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~extensions&nbsp;<span class="keyword">private</span>&nbsp;issuer</code> creates <code class="code">certificate</code>, a signed
-      certificate.
+      certificate.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.html#VALsubject">subject</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-<code class="code">subject&nbsp;certificate</code> is <code class="code">dn</code>, the subject as
-    <a href="X509.html#TYPEdistinguished_name">dn</a> of the <code class="code">certificate</code>.
+<p><code class="code">subject&nbsp;certificate</code> is <code class="code">dn</code>, the subject as
+    <a href="X509.html#TYPEdistinguished_name">dn</a> of the <code class="code">certificate</code>.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="X509.Extension.html#VALsubject_alt_names">subject_alt_names</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
+<td><div class="info">
+<p>Returns <code class="code">subject_alt_names</code> if extension if present, else <code class="code">&nbsp;[]&nbsp;</code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Extension.html#VALsupports_extended_usage">supports_extended_usage</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
 <td><div class="info">
-<code class="code">supports_extended_usage&nbsp;~not_present&nbsp;certificate<br>
+<p><code class="code">supports_extended_usage&nbsp;~not_present&nbsp;certificate<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extended_key_usage</code> is <code class="code">result</code>, whether the <code class="code">certificate</code>
       supports the given <code class="code">extended_key_usage</code> (defaults to
       <code class="code">~not_present</code> if the certificate does not contain an
-      extendedKeyUsage extension.
+      extendedKeyUsage extension.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.html#VALsupports_hostname">supports_hostname</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-<code class="code">supports_hostname&nbsp;certificate&nbsp;host</code> is <code class="code">result</code>, whether the
+<p><code class="code">supports_hostname&nbsp;certificate&nbsp;host</code> is <code class="code">result</code>, whether the
     <code class="code">certificate</code> contains the given <code class="code">host</code>, using
-    <a href="X509.html#VALhostnames"><code class="code"><span class="constructor">X509</span>.hostnames</code></a>.
+    <a href="X509.html#VALhostnames"><code class="code"><span class="constructor">X509</span>.hostnames</code></a>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.html#VALsupports_keytype">supports_keytype</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-<code class="code">supports_keytype&nbsp;certificate&nbsp;key_type</code> is <code class="code">result</code>, whether public key of the <code class="code">certificate</code> matches the given <code class="code">key_type</code>.
+<p><code class="code">supports_keytype&nbsp;certificate&nbsp;key_type</code> is <code class="code">result</code>, whether public key of the <code class="code">certificate</code> matches the given <code class="code">key_type</code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Extension.html#VALsupports_usage">supports_usage</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
 <td><div class="info">
-<code class="code">supports_usage&nbsp;~not_present&nbsp;certificate&nbsp;key_usage</code> is <code class="code">result</code>,
+<p><code class="code">supports_usage&nbsp;~not_present&nbsp;certificate&nbsp;key_usage</code> is <code class="code">result</code>,
       whether the <code class="code">certificate</code> supports the given <code class="code">key_usage</code>
       (defaults to <code class="code">~not_present</code> if the certificate does not contain
-      a keyUsage extension).
+      a keyUsage extension).</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>T</td></tr>
+<tr><td align="left"><div>T</div></td></tr>
 <tr><td><a href="X509.html#VALt_of_sexp">t_of_sexp</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-<code class="code">t_of_sexp&nbsp;sexp</code> is <code class="code">certificate</code>, the unmarshalled <code class="code">sexp</code>.
+<p><code class="code">t_of_sexp&nbsp;sexp</code> is <code class="code">certificate</code>, the unmarshalled <code class="code">sexp</code>.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="X509.CRL.html#VALthis_update">this_update</a> [<a href="X509.CRL.html">X509.CRL</a>]</td>
+<td><div class="info">
+<p><code class="code">this_update&nbsp;t</code> is the timestamp of the revocation list.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.Pem.Private_key.html#VALto_pem_cstruct">to_pem_cstruct</a> [<a href="X509.Encoding.Pem.Private_key.html">X509.Encoding.Pem.Private_key</a>]</td>
 <td><div class="info">
-<code class="code">to_pem_cstruct&nbsp;private_keys</code> is <code class="code">pem</code>, the pem encoded
-          private keys.
+<p><code class="code">to_pem_cstruct&nbsp;private_keys</code> is <code class="code">pem</code>, the pem encoded
+          private keys.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.Pem.Public_key.html#VALto_pem_cstruct">to_pem_cstruct</a> [<a href="X509.Encoding.Pem.Public_key.html">X509.Encoding.Pem.Public_key</a>]</td>
 <td><div class="info">
-<code class="code">to_pem_cstruct&nbsp;public_keys</code> is <code class="code">pem</code>, the pem encoded
-          public keys.
+<p><code class="code">to_pem_cstruct&nbsp;public_keys</code> is <code class="code">pem</code>, the pem encoded
+          public keys.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.Pem.Certificate_signing_request.html#VALto_pem_cstruct">to_pem_cstruct</a> [<a href="X509.Encoding.Pem.Certificate_signing_request.html">X509.Encoding.Pem.Certificate_signing_request</a>]</td>
 <td><div class="info">
-<code class="code">to_pem_cstruct&nbsp;signing_requests</code> is <code class="code">pem</code>, the pem encoded
-          signing requests.
+<p><code class="code">to_pem_cstruct&nbsp;signing_requests</code> is <code class="code">pem</code>, the pem encoded
+          signing requests.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.Pem.Certificate.html#VALto_pem_cstruct">to_pem_cstruct</a> [<a href="X509.Encoding.Pem.Certificate.html">X509.Encoding.Pem.Certificate</a>]</td>
 <td><div class="info">
-<code class="code">to_pem_cstruct&nbsp;certificates</code> is <code class="code">pem</code>, the pem encoded
-          certificates.
+<p><code class="code">to_pem_cstruct&nbsp;certificates</code> is <code class="code">pem</code>, the pem encoded
+          certificates.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.Pem.Private_key.html#VALto_pem_cstruct1">to_pem_cstruct1</a> [<a href="X509.Encoding.Pem.Private_key.html">X509.Encoding.Pem.Private_key</a>]</td>
 <td><div class="info">
-<code class="code">to_pem_cstruct1&nbsp;private_key</code> is <code class="code">pem</code>, the pem encoded
-          private key.
+<p><code class="code">to_pem_cstruct1&nbsp;private_key</code> is <code class="code">pem</code>, the pem encoded
+          private key.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.Pem.Public_key.html#VALto_pem_cstruct1">to_pem_cstruct1</a> [<a href="X509.Encoding.Pem.Public_key.html">X509.Encoding.Pem.Public_key</a>]</td>
 <td><div class="info">
-<code class="code">to_pem_cstruct1&nbsp;public_key</code> is <code class="code">pem</code>, the pem encoded
-          public key.
+<p><code class="code">to_pem_cstruct1&nbsp;public_key</code> is <code class="code">pem</code>, the pem encoded
+          public key.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.Pem.Certificate_signing_request.html#VALto_pem_cstruct1">to_pem_cstruct1</a> [<a href="X509.Encoding.Pem.Certificate_signing_request.html">X509.Encoding.Pem.Certificate_signing_request</a>]</td>
 <td><div class="info">
-<code class="code">to_pem_cstruct1&nbsp;signing_request</code> is <code class="code">pem</code>, the pem encoded
-          signing_request.
+<p><code class="code">to_pem_cstruct1&nbsp;signing_request</code> is <code class="code">pem</code>, the pem encoded
+          signing_request.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Encoding.Pem.Certificate.html#VALto_pem_cstruct1">to_pem_cstruct1</a> [<a href="X509.Encoding.Pem.Certificate.html">X509.Encoding.Pem.Certificate</a>]</td>
 <td><div class="info">
-<code class="code">to_pem_cstruct1&nbsp;certificate</code> is <code class="code">pem</code>, the pem encoded
-          certificate.
+<p><code class="code">to_pem_cstruct1&nbsp;certificate</code> is <code class="code">pem</code>, the pem encoded
+          certificate.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Validation.html#VALtrust_cert_fingerprint">trust_cert_fingerprint</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-<span class="deprecated"><code class="code">trust_cert_fingerprint&nbsp;~time&nbsp;~hash&nbsp;~fingerprints&nbsp;certificates</code>
+<span class="deprecated"><p><code class="code">trust_cert_fingerprint&nbsp;~time&nbsp;~hash&nbsp;~fingerprints&nbsp;certificates</code>
       is <code class="code">result</code>, the first element of <code class="code">certificates</code> is verified to
       match the given <code class="code">fingerprints</code> map (hostname to fingerprint)
-      using <a href="X509.html#VALfingerprint"><code class="code"><span class="constructor">X509</span>.fingerprint</code></a>.
+      using <a href="X509.html#VALfingerprint"><code class="code"><span class="constructor">X509</span>.fingerprint</code></a>.</p>
+
 </span></div>
 </td></tr>
 <tr><td><a href="X509.Validation.html#VALtrust_key_fingerprint">trust_key_fingerprint</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-<code class="code">trust_key_fingerprint&nbsp;~time&nbsp;~hash&nbsp;~fingerprints&nbsp;certificates</code>
+<p><code class="code">trust_key_fingerprint&nbsp;~time&nbsp;~hash&nbsp;~fingerprints&nbsp;certificates</code>
       is <code class="code">result</code>, the first element of <code class="code">certificates</code> is verified
       against the given <code class="code">fingerprints</code> map (hostname to public key
-      fingerprint) using <a href="X509.html#VALkey_fingerprint"><code class="code"><span class="constructor">X509</span>.key_fingerprint</code></a>.
+      fingerprint) using <a href="X509.html#VALkey_fingerprint"><code class="code"><span class="constructor">X509</span>.key_fingerprint</code></a>.</p>
+
 </div>
 </td></tr>
-<tr><td align="left"><br>V</td></tr>
+<tr><td align="left"><div>U</div></td></tr>
+<tr><td><a href="X509.Extension.html#VALunsupported">unsupported</a> [<a href="X509.Extension.html">X509.Extension</a>]</td>
+<td><div class="info">
+<p><code class="code">unsupported&nbsp;cert&nbsp;oid</code> is <code class="code"><span class="constructor">None</span></code> if <code class="code">oid</code> is not present as extension, or
+      <code class="code"><span class="constructor">Some</span>&nbsp;(crit,&nbsp;data)</code> if an extension with <code class="code">oid</code> is present.</p>
+
+</div>
+</td></tr>
+<tr><td align="left"><div>V</div></td></tr>
 <tr><td><a href="X509.Validation.html#VALvalid_ca">valid_ca</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-<code class="code">valid_ca&nbsp;~time&nbsp;certificate</code> is <code class="code">result</code>, which is `Ok if the given
+<p><code class="code">valid_ca&nbsp;~time&nbsp;certificate</code> is <code class="code">result</code>, which is `Ok if the given
       certificate is self-signed, it is valid at <code class="code">time</code>, its extensions are not
       present (if X.509 version 1 certificate), or are appropriate for a CA
       (BasicConstraints is present and true, KeyUsage extension contains
-      keyCertSign).
+      keyCertSign).</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Validation.html#VALvalid_cas">valid_cas</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-<code class="code">valid_cas&nbsp;~time&nbsp;certificates</code> is <code class="code">valid_certificates</code>, only
-      those certificates which pass the <a href="X509.Validation.html#VALvalid_ca"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.valid_ca</code></a> check.
+<p><code class="code">valid_cas&nbsp;~time&nbsp;certificates</code> is <code class="code">valid_certificates</code>, only
+      those certificates which pass the <a href="X509.Validation.html#VALvalid_ca"><code class="code"><span class="constructor">X509</span>.<span class="constructor">Validation</span>.valid_ca</code></a> check.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="X509.CRL.html#VALvalidate">validate</a> [<a href="X509.CRL.html">X509.CRL</a>]</td>
+<td><div class="info">
+<p><code class="code">validate&nbsp;t&nbsp;pk</code> validates the digital signature of the revocation list.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Validation.html#VALvalidation_error_of_sexp">validation_error_of_sexp</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-<code class="code">validation_error_of_sexp&nbsp;sexp</code> is <code class="code">validation_error</code>, the unmarshalled <code class="code">sexp</code>.
+<p><code class="code">validation_error_of_sexp&nbsp;sexp</code> is <code class="code">validation_error</code>, the unmarshalled <code class="code">sexp</code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Validation.html#VALvalidation_error_to_string">validation_error_to_string</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-<code class="code">validation_error_to_string&nbsp;validation_error</code> is <code class="code">string</code>, the string representation of the <code class="code">validation_error</code>.
+<p><code class="code">validation_error_to_string&nbsp;validation_error</code> is <code class="code">string</code>, the string representation of the <code class="code">validation_error</code>.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.html#VALvalidity">validity</a> [<a href="X509.html">X509</a>]</td>
 <td><div class="info">
-<code class="code">validity&nbsp;certificate</code> is <code class="code">from,&nbsp;until</code>, the validity of the certificate.
+<p><code class="code">validity&nbsp;certificate</code> is <code class="code">from,&nbsp;until</code>, the validity of the certificate.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="X509.CRL.html#VALverify">verify</a> [<a href="X509.CRL.html">X509.CRL</a>]</td>
+<td><div class="info">
+<p><code class="code">verify&nbsp;t&nbsp;~time&nbsp;cert</code> verifies that the issuer of <code class="code">t</code> matches the subject
+      of <code class="code">cert</code>, and validates the digital signature of the revocation list.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Validation.html#VALverify_chain">verify_chain</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-<code class="code">verify_chain&nbsp;~host&nbsp;~time&nbsp;~anchors&nbsp;chain</code> is <code class="code">result</code>, either <code class="code"><span class="constructor">Ok</span></code> and the
-      trust anchor used to verify the chain, or <code class="code"><span class="constructor">Fail</span></code> and the chain error.
+<p><code class="code">verify_chain&nbsp;~host&nbsp;~time&nbsp;~revoked&nbsp;~anchors&nbsp;chain</code> is <code class="code">result</code>, either
+      <code class="code"><span class="constructor">Ok</span></code> and the trust anchor used to verify the chain, or <code class="code"><span class="constructor">Fail</span></code> and the
+      chain error.</p>
+
 </div>
 </td></tr>
 <tr><td><a href="X509.Validation.html#VALverify_chain_of_trust">verify_chain_of_trust</a> [<a href="X509.Validation.html">X509.Validation</a>]</td>
 <td><div class="info">
-<code class="code">verify_chain_of_trust&nbsp;~host&nbsp;~time&nbsp;~anchors&nbsp;certificates</code> is <code class="code">result</code>.
+<p><code class="code">verify_chain_of_trust&nbsp;~host&nbsp;~time&nbsp;~revoked&nbsp;~anchors&nbsp;certificates</code> is
+      <code class="code">result</code>.</p>
+
 </div>
 </td></tr>
 </table>

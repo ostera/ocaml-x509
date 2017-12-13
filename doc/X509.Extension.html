@@ -19,90 +19,169 @@
 </div>
 <h1>Module <a href="type_X509.Extension.html">X509.Extension</a></h1>
 
-<pre><span class="keyword">module</span> Extension: <code class="code"><span class="keyword">sig</span></code> <a href="X509.Extension.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
-X.509v3 extensions<br>
+<pre><span id="MODULEExtension"><span class="keyword">module</span> Extension</span>: <code class="code"><span class="keyword">sig</span></code> <a href="X509.Extension.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+<div class="info-desc">
+<p>X.509v3 extensions</p>
+</div>
 </div>
 <hr width="100%">
-<br>
-<h1 id="1_X509v3extension">X.509v3 extension</h1><br>
-
+<h2 id="1_X509v3extension">X.509v3 extension</h2>
 <pre><span id="TYPEkey_usage"><span class="keyword">type</span> <code class="type"></code>key_usage</span> = <code class="type">[ `CRL_sign<br>       | `Content_commitment<br>       | `Data_encipherment<br>       | `Decipher_only<br>       | `Digital_signature<br>       | `Encipher_only<br>       | `Key_agreement<br>       | `Key_cert_sign<br>       | `Key_encipherment ]</code> </pre>
 <div class="info ">
-The polymorphic variant of
+<div class="info-desc">
+<p>The polymorphic variant of
   <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.3">key
-  usages</a>.<br>
+  usages</a>.</p>
+</div>
 </div>
 
 
 <pre><span id="VALsupports_usage"><span class="keyword">val</span> supports_usage</span> : <code class="type">?not_present:bool -> <a href="X509.html#TYPEt">X509.t</a> -> <a href="X509.Extension.html#TYPEkey_usage">key_usage</a> -> bool</code></pre><div class="info ">
-<code class="code">supports_usage&nbsp;~not_present&nbsp;certificate&nbsp;key_usage</code> is <code class="code">result</code>,
+<div class="info-desc">
+<p><code class="code">supports_usage&nbsp;~not_present&nbsp;certificate&nbsp;key_usage</code> is <code class="code">result</code>,
       whether the <code class="code">certificate</code> supports the given <code class="code">key_usage</code>
       (defaults to <code class="code">~not_present</code> if the certificate does not contain
-      a keyUsage extension).<br>
+      a keyUsage extension).</p>
+</div>
 </div>
 
-<pre><span id="TYPEextended_key_usage"><span class="keyword">type</span> <code class="type"></code>extended_key_usage</span> = <code class="type">[ `Any<br>       | `Client_auth<br>       | `Code_signing<br>       | `Email_protection<br>       | `Ipsec_end<br>       | `Ipsec_tunnel<br>       | `Ipsec_user<br>       | `Ocsp_signing<br>       | `Other of Asn.OID.t<br>       | `Server_auth<br>       | `Time_stamping ]</code> </pre>
+<pre><span id="TYPEextended_key_usage"><span class="keyword">type</span> <code class="type"></code>extended_key_usage</span> = <code class="type">[ `Any<br>       | `Client_auth<br>       | `Code_signing<br>       | `Email_protection<br>       | `Ipsec_end<br>       | `Ipsec_tunnel<br>       | `Ipsec_user<br>       | `Ocsp_signing<br>       | `Other of Asn.oid<br>       | `Server_auth<br>       | `Time_stamping ]</code> </pre>
 <div class="info ">
-The polymorphic variant of
+<div class="info-desc">
+<p>The polymorphic variant of
   <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.12">extended key
-  usages</a>.<br>
+  usages</a>.</p>
+</div>
 </div>
 
 
 <pre><span id="VALsupports_extended_usage"><span class="keyword">val</span> supports_extended_usage</span> : <code class="type">?not_present:bool -> <a href="X509.html#TYPEt">X509.t</a> -> <a href="X509.Extension.html#TYPEextended_key_usage">extended_key_usage</a> -> bool</code></pre><div class="info ">
-<code class="code">supports_extended_usage&nbsp;~not_present&nbsp;certificate<br>
+<div class="info-desc">
+<p><code class="code">supports_extended_usage&nbsp;~not_present&nbsp;certificate<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extended_key_usage</code> is <code class="code">result</code>, whether the <code class="code">certificate</code>
       supports the given <code class="code">extended_key_usage</code> (defaults to
       <code class="code">~not_present</code> if the certificate does not contain an
-      extendedKeyUsage extension.<br>
+      extendedKeyUsage extension.</p>
+</div>
 </div>
 
-<pre><span id="TYPEgeneral_name"><span class="keyword">type</span> <code class="type"></code>general_name</span> = <code class="type">[ `DNS of string<br>       | `Directory of <a href="X509.html#TYPEdistinguished_name">X509.distinguished_name</a><br>       | `EDI_party of string option * string<br>       | `IP of Cstruct.t<br>       | `Other of Asn.OID.t * string<br>       | `Registered_id of Asn.OID.t<br>       | `Rfc_822 of string<br>       | `URI of string<br>       | `X400_address of unit ]</code> </pre>
+<pre><span id="VALbasic_constraints"><span class="keyword">val</span> basic_constraints</span> : <code class="type"><a href="X509.html#TYPEt">X509.t</a> -> (bool * int option) option</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">basic_constraints&nbsp;cert</code> extracts the BasicConstraints extension, if present.</p>
+</div>
+</div>
+
+<pre><span id="TYPEgeneral_name"><span class="keyword">type</span> <code class="type"></code>general_name</span> = <code class="type">[ `DNS of string<br>       | `Directory of <a href="X509.html#TYPEdistinguished_name">X509.distinguished_name</a><br>       | `EDI_party of string option * string<br>       | `IP of Cstruct.t<br>       | `Other of Asn.oid * string<br>       | `Registered_id of Asn.oid<br>       | `Rfc_822 of string<br>       | `URI of string<br>       | `X400_address of unit ]</code> </pre>
 <div class="info ">
-A list of <code class="code">general_name</code>s is the value of both
+<div class="info-desc">
+<p>A list of <code class="code">general_name</code>s is the value of both
       <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.6">subjectAltName</a>
       and
       <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.7">IssuerAltName</a>
-      extension.<br>
+      extension.</p>
+</div>
 </div>
 
 
 <pre><span id="TYPEauthority_key_id"><span class="keyword">type</span> <code class="type"></code>authority_key_id</span> = <code class="type">Cstruct.t option * <a href="X509.Extension.html#TYPEgeneral_name">general_name</a> list * Z.t option</code> </pre>
 <div class="info ">
-The authority key identifier, as present in the
+<div class="info-desc">
+<p>The authority key identifier, as present in the
   <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.1">Authority Key
-  Identifier</a> extension.<br>
+  Identifier</a> extension.</p>
+</div>
 </div>
 
 
-<pre><span id="TYPEpriv_key_usage_period"><span class="keyword">type</span> <code class="type"></code>priv_key_usage_period</span> = <code class="type">[ `Interval of Asn.Time.t * Asn.Time.t<br>       | `Not_after of Asn.Time.t<br>       | `Not_before of Asn.Time.t ]</code> </pre>
+<pre><span id="TYPEpriv_key_usage_period"><span class="keyword">type</span> <code class="type"></code>priv_key_usage_period</span> = <code class="type">[ `Interval of Ptime.t * Ptime.t<br>       | `Not_after of Ptime.t<br>       | `Not_before of Ptime.t ]</code> </pre>
 <div class="info ">
-The private key usage period, as defined in
-  <a href="https://tools.ietf.org/html/rfc3280#section-4.2.1.4">RFC 3280</a>.<br>
+<div class="info-desc">
+<p>The private key usage period, as defined in
+  <a href="https://tools.ietf.org/html/rfc3280#section-4.2.1.4">RFC 3280</a>.</p>
+</div>
 </div>
 
 
 <pre><span id="TYPEname_constraint"><span class="keyword">type</span> <code class="type"></code>name_constraint</span> = <code class="type">(<a href="X509.Extension.html#TYPEgeneral_name">general_name</a> * int * int option) list</code> </pre>
 <div class="info ">
-Name constraints, as defined in
+<div class="info-desc">
+<p>Name constraints, as defined in
   <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.10">RFC
-  5280</a>.<br>
+  5280</a>.</p>
+</div>
 </div>
 
 
-<pre><span id="TYPEpolicy"><span class="keyword">type</span> <code class="type"></code>policy</span> = <code class="type">[ `Any | `Something of Asn.OID.t ]</code> </pre>
+<pre><span id="TYPEpolicy"><span class="keyword">type</span> <code class="type"></code>policy</span> = <code class="type">[ `Any | `Something of Asn.oid ]</code> </pre>
 <div class="info ">
-Certificate policies, the
+<div class="info-desc">
+<p>Certificate policies, the
   <a href="https://tools.ietf.org/html/rfc5280#section-4.2.1.4">policy
-  extension</a>.<br>
+  extension</a>.</p>
+</div>
 </div>
 
 
-<pre><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> = <code class="type">[ `Authority_key_id of <a href="X509.Extension.html#TYPEauthority_key_id">authority_key_id</a><br>       | `Basic_constraints of bool * int option<br>       | `Ext_key_usage of <a href="X509.Extension.html#TYPEextended_key_usage">extended_key_usage</a> list<br>       | `Issuer_alt_name of <a href="X509.Extension.html#TYPEgeneral_name">general_name</a> list<br>       | `Key_usage of <a href="X509.Extension.html#TYPEkey_usage">key_usage</a> list<br>       | `Name_constraints of<br>           <a href="X509.Extension.html#TYPEname_constraint">name_constraint</a> * <a href="X509.Extension.html#TYPEname_constraint">name_constraint</a><br>       | `Policies of <a href="X509.Extension.html#TYPEpolicy">policy</a> list<br>       | `Priv_key_period of <a href="X509.Extension.html#TYPEpriv_key_usage_period">priv_key_usage_period</a><br>       | `Subject_alt_name of <a href="X509.Extension.html#TYPEgeneral_name">general_name</a> list<br>       | `Subject_key_id of Cstruct.t<br>       | `Unsupported of Asn.OID.t * Cstruct.t ]</code> </pre>
+<pre><span id="VALunsupported"><span class="keyword">val</span> unsupported</span> : <code class="type"><a href="X509.html#TYPEt">X509.t</a> -> Asn.OID.t -> (bool * Cstruct.t) option</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">unsupported&nbsp;cert&nbsp;oid</code> is <code class="code"><span class="constructor">None</span></code> if <code class="code">oid</code> is not present as extension, or
+      <code class="code"><span class="constructor">Some</span>&nbsp;(crit,&nbsp;data)</code> if an extension with <code class="code">oid</code> is present.</p>
+</div>
+</div>
+
+<pre><span id="VALsubject_alt_names"><span class="keyword">val</span> subject_alt_names</span> : <code class="type"><a href="X509.html#TYPEt">X509.t</a> -> <a href="X509.Extension.html#TYPEgeneral_name">general_name</a> list</code></pre><div class="info ">
+<div class="info-desc">
+<p>Returns <code class="code">subject_alt_names</code> if extension if present, else <code class="code">&nbsp;[]&nbsp;</code>.</p>
+</div>
+</div>
+
+<pre><span id="TYPEreason"><span class="keyword">type</span> <code class="type"></code>reason</span> = <code class="type">[ `AA_compromise<br>       | `Affiliation_changed<br>       | `CA_compromise<br>       | `Certificate_hold<br>       | `Cessation_of_operation<br>       | `Key_compromise<br>       | `Privilege_withdrawn<br>       | `Superseded<br>       | `Unused ]</code> </pre>
 <div class="info ">
-The polymorphic variant of
+<div class="info-desc">
+<p>Type of allowed revocation reasons for a given distribution point.</p>
+</div>
+</div>
+
+
+<pre><span id="TYPEdistribution_point_name"><span class="keyword">type</span> <code class="type"></code>distribution_point_name</span> = <code class="type">[ `Full of <a href="X509.Extension.html#TYPEgeneral_name">general_name</a> list<br>       | `Relative of X509_types.distinguished_name ]</code> </pre>
+<div class="info ">
+<div class="info-desc">
+<p>Distribution point name, either a full one using general names, or a
+      relative one using a distinguished name.</p>
+</div>
+</div>
+
+
+<pre><span id="TYPEdistribution_point"><span class="keyword">type</span> <code class="type"></code>distribution_point</span> = <code class="type"><a href="X509.Extension.html#TYPEdistribution_point_name">distribution_point_name</a> option *<br>       <a href="X509.Extension.html#TYPEreason">reason</a> list option * X509_types.distinguished_name option</code> </pre>
+<div class="info ">
+<div class="info-desc">
+<p>Distribution point, consisting of an optional name, an optional list of
+      allowed reasons, and an optional issuer.</p>
+</div>
+</div>
+
+
+<pre><span id="VALcrl_distribution_points"><span class="keyword">val</span> crl_distribution_points</span> : <code class="type"><a href="X509.html#TYPEt">X509.t</a> -> <a href="X509.Extension.html#TYPEdistribution_point">distribution_point</a> list</code></pre><div class="info ">
+<div class="info-desc">
+<p>Returns <code class="code">crl_distribution_points</code> if extension if present, else <code class="code">&nbsp;[]&nbsp;</code>.</p>
+</div>
+</div>
+
+<pre><span id="TYPEreason_code"><span class="keyword">type</span> <code class="type"></code>reason_code</span> = <code class="type">[ `AA_compromise<br>       | `Affiliation_changed<br>       | `CA_compromise<br>       | `Certificate_hold<br>       | `Cessation_of_operation<br>       | `Key_compromise<br>       | `Privilege_withdrawn<br>       | `Remove_from_CRL<br>       | `Superseded<br>       | `Unspecified ]</code> </pre>
+<div class="info ">
+<div class="info-desc">
+<p>The reason of a revoked certificate.</p>
+</div>
+</div>
+
+
+<pre><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> = <code class="type">[ `Authority_key_id of <a href="X509.Extension.html#TYPEauthority_key_id">authority_key_id</a><br>       | `Basic_constraints of bool * int option<br>       | `CRL_distribution_points of <a href="X509.Extension.html#TYPEdistribution_point">distribution_point</a> list<br>       | `CRL_number of int<br>       | `Certificate_issuer of <a href="X509.Extension.html#TYPEgeneral_name">general_name</a> list<br>       | `Delta_CRL_indicator of int<br>       | `Ext_key_usage of <a href="X509.Extension.html#TYPEextended_key_usage">extended_key_usage</a> list<br>       | `Freshest_CRL of <a href="X509.Extension.html#TYPEdistribution_point">distribution_point</a> list<br>       | `Invalidity_date of Ptime.t<br>       | `Issuer_alt_name of <a href="X509.Extension.html#TYPEgeneral_name">general_name</a> list<br>       | `Issuing_distribution_point of<br>           <a href="X509.Extension.html#TYPEdistribution_point_name">distribution_point_name</a> option * bool * bool *<br>           <a href="X509.Extension.html#TYPEreason">reason</a> list option * bool * bool<br>       | `Key_usage of <a href="X509.Extension.html#TYPEkey_usage">key_usage</a> list<br>       | `Name_constraints of<br>           <a href="X509.Extension.html#TYPEname_constraint">name_constraint</a> * <a href="X509.Extension.html#TYPEname_constraint">name_constraint</a><br>       | `Policies of <a href="X509.Extension.html#TYPEpolicy">policy</a> list<br>       | `Priv_key_period of <a href="X509.Extension.html#TYPEpriv_key_usage_period">priv_key_usage_period</a><br>       | `Reason of <a href="X509.Extension.html#TYPEreason_code">reason_code</a><br>       | `Subject_alt_name of <a href="X509.Extension.html#TYPEgeneral_name">general_name</a> list<br>       | `Subject_key_id of Cstruct.t<br>       | `Unsupported of Asn.oid * Cstruct.t ]</code> </pre>
+<div class="info ">
+<div class="info-desc">
+<p>The polymorphic variant of
   <a href="https://tools.ietf.org/html/rfc5280#section-4.2">X509v3
-  extensions</a>.<br>
+  extensions</a>.</p>
+</div>
 </div>
 
 </body></html>

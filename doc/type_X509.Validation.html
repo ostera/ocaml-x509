@@ -11,7 +11,7 @@
 <body>
 <code class="code"><span class="keyword">sig</span><br>
 &nbsp;&nbsp;<span class="keyword">type</span>&nbsp;ca_error&nbsp;=<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;<span class="keywordsign">`</span><span class="constructor">CACertificateExpired</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;*&nbsp;float&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;<span class="keywordsign">`</span><span class="constructor">CACertificateExpired</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;*&nbsp;<span class="constructor">Ptime</span>.t&nbsp;option<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">CAInvalidExtensions</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">CAInvalidSelfSignature</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">CAInvalidVersion</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t<br>
@@ -20,10 +20,10 @@
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;sexp_of_ca_error&nbsp;:&nbsp;<span class="constructor">X509</span>.<span class="constructor">Validation</span>.ca_error&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Sexplib</span>.<span class="constructor">Sexp</span>.t<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;ca_error_to_string&nbsp;:&nbsp;<span class="constructor">X509</span>.<span class="constructor">Validation</span>.ca_error&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;valid_ca&nbsp;:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;?time:float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;[&nbsp;<span class="keywordsign">`</span><span class="constructor">Error</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.<span class="constructor">Validation</span>.ca_error&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">Ok</span>&nbsp;]<br>
-&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;valid_cas&nbsp;:&nbsp;?time:float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;?time:<span class="constructor">Ptime</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;[&nbsp;<span class="keywordsign">`</span><span class="constructor">Error</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.<span class="constructor">Validation</span>.ca_error&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">Ok</span>&nbsp;]<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;valid_cas&nbsp;:&nbsp;?time:<span class="constructor">Ptime</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;list<br>
 &nbsp;&nbsp;<span class="keyword">type</span>&nbsp;leaf_validation_error&nbsp;=<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;<span class="keywordsign">`</span><span class="constructor">LeafCertificateExpired</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;*&nbsp;float&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;<span class="keywordsign">`</span><span class="constructor">LeafCertificateExpired</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;*&nbsp;<span class="constructor">Ptime</span>.t&nbsp;option<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">LeafInvalidExtensions</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">LeafInvalidName</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;*&nbsp;<span class="constructor">X509</span>.host&nbsp;option<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">LeafInvalidVersion</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;]<br>
@@ -33,10 +33,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">ChainInvalidSignature</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;*&nbsp;<span class="constructor">X509</span>.t<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">ChainIssuerSubjectMismatch</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;*&nbsp;<span class="constructor">X509</span>.t<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">EmptyCertificateChain</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">IntermediateCertificateExpired</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;*&nbsp;float&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">IntermediateCertificateExpired</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;*&nbsp;<span class="constructor">Ptime</span>.t&nbsp;option<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">IntermediateInvalidExtensions</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">IntermediateInvalidVersion</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">NoTrustAnchor</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">NoTrustAnchor</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">Revoked</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;]<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;build_paths&nbsp;:&nbsp;<span class="constructor">X509</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;list&nbsp;list<br>
 &nbsp;&nbsp;<span class="keyword">type</span>&nbsp;chain_error&nbsp;=<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;<span class="keywordsign">`</span><span class="constructor">Chain</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.<span class="constructor">Validation</span>.chain_validation_error<br>
@@ -46,7 +47,8 @@
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;chain_error_to_string&nbsp;:&nbsp;<span class="constructor">X509</span>.<span class="constructor">Validation</span>.chain_error&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;verify_chain&nbsp;:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;?host:<span class="constructor">X509</span>.host&nbsp;<span class="keywordsign">-&gt;</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;?time:float&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;?time:<span class="constructor">Ptime</span>.t&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;?revoked:(issuer:<span class="constructor">X509</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;cert:<span class="constructor">X509</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bool)&nbsp;<span class="keywordsign">-&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;anchors:<span class="constructor">X509</span>.t&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">X509</span>.t&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;[&nbsp;<span class="keywordsign">`</span><span class="constructor">Fail</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.<span class="constructor">Validation</span>.chain_error&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">Ok</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;]<br>
 &nbsp;&nbsp;<span class="keyword">type</span>&nbsp;fingerprint_validation_error&nbsp;=<br>
@@ -68,17 +70,18 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">Ok</span>&nbsp;<span class="keyword">of</span>&nbsp;(<span class="constructor">X509</span>.t&nbsp;list&nbsp;*&nbsp;<span class="constructor">X509</span>.t)&nbsp;option&nbsp;]<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;verify_chain_of_trust&nbsp;:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;?host:<span class="constructor">X509</span>.host&nbsp;<span class="keywordsign">-&gt;</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;?time:float&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;?time:<span class="constructor">Ptime</span>.t&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;?revoked:(issuer:<span class="constructor">X509</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;cert:<span class="constructor">X509</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bool)&nbsp;<span class="keywordsign">-&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;anchors:<span class="constructor">X509</span>.t&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.t&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.<span class="constructor">Validation</span>.result<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;trust_key_fingerprint&nbsp;:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;?host:<span class="constructor">X509</span>.host&nbsp;<span class="keywordsign">-&gt;</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;?time:float&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;?time:<span class="constructor">Ptime</span>.t&nbsp;<span class="keywordsign">-&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;hash:<span class="constructor">Nocrypto</span>.<span class="constructor">Hash</span>.hash&nbsp;<span class="keywordsign">-&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;fingerprints:(string&nbsp;*&nbsp;<span class="constructor">Cstruct</span>.t)&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">X509</span>.t&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.<span class="constructor">Validation</span>.result<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;trust_cert_fingerprint&nbsp;:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;?host:<span class="constructor">X509</span>.host&nbsp;<span class="keywordsign">-&gt;</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;?time:float&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;?time:<span class="constructor">Ptime</span>.t&nbsp;<span class="keywordsign">-&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;hash:<span class="constructor">Nocrypto</span>.<span class="constructor">Hash</span>.hash&nbsp;<span class="keywordsign">-&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;fingerprints:(string&nbsp;*&nbsp;<span class="constructor">Cstruct</span>.t)&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">X509</span>.t&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.<span class="constructor">Validation</span>.result<br>
