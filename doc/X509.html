@@ -61,7 +61,7 @@
     extensions (such as policy and name constraints).  The only supported key
     type is RSA.</p>
 
-<p><em>0.6.0 - <a href="https://github.com/mirleft/ocaml-x509 ">homepage</a></em></p>
+<p><em>0.6.1 - <a href="https://github.com/mirleft/ocaml-x509 ">homepage</a></em></p>
 </div>
 </div>
 <hr width="100%">
@@ -196,6 +196,18 @@
 </div>
 </div>
 
+
+<pre><span id="VALdistinguished_name_of_sexp"><span class="keyword">val</span> distinguished_name_of_sexp</span> : <code class="type">Sexplib.Sexp.t -> <a href="X509.html#TYPEdistinguished_name">distinguished_name</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">distinguished_name_of_sexp&nbsp;sexp</code> is a <code class="code">distinguished_name</code>, the unmarshalled <code class="code">sexp</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALsexp_of_distinguished_name"><span class="keyword">val</span> sexp_of_distinguished_name</span> : <code class="type"><a href="X509.html#TYPEdistinguished_name">distinguished_name</a> -> Sexplib.Sexp.t</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">sexp_of_distinguished_name&nbsp;dn</code> is <code class="code">sexp</code>, the marshalled <code class="code">dn</code>.</p>
+</div>
+</div>
 
 <pre><span id="VALdistinguished_name_to_string"><span class="keyword">val</span> distinguished_name_to_string</span> : <code class="type"><a href="X509.html#TYPEdistinguished_name">distinguished_name</a> -> string</code></pre><div class="info ">
 <div class="info-desc">

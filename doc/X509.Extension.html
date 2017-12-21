@@ -143,7 +143,7 @@
 </div>
 
 
-<pre><span id="TYPEdistribution_point_name"><span class="keyword">type</span> <code class="type"></code>distribution_point_name</span> = <code class="type">[ `Full of <a href="X509.Extension.html#TYPEgeneral_name">general_name</a> list<br>       | `Relative of X509_types.distinguished_name ]</code> </pre>
+<pre><span id="TYPEdistribution_point_name"><span class="keyword">type</span> <code class="type"></code>distribution_point_name</span> = <code class="type">[ `Full of <a href="X509.Extension.html#TYPEgeneral_name">general_name</a> list<br>       | `Relative of <a href="X509.html#TYPEdistinguished_name">X509.distinguished_name</a> ]</code> </pre>
 <div class="info ">
 <div class="info-desc">
 <p>Distribution point name, either a full one using general names, or a
@@ -152,7 +152,7 @@
 </div>
 
 
-<pre><span id="TYPEdistribution_point"><span class="keyword">type</span> <code class="type"></code>distribution_point</span> = <code class="type"><a href="X509.Extension.html#TYPEdistribution_point_name">distribution_point_name</a> option *<br>       <a href="X509.Extension.html#TYPEreason">reason</a> list option * X509_types.distinguished_name option</code> </pre>
+<pre><span id="TYPEdistribution_point"><span class="keyword">type</span> <code class="type"></code>distribution_point</span> = <code class="type"><a href="X509.Extension.html#TYPEdistribution_point_name">distribution_point_name</a> option *<br>       <a href="X509.Extension.html#TYPEreason">reason</a> list option * <a href="X509.html#TYPEdistinguished_name">X509.distinguished_name</a> option</code> </pre>
 <div class="info ">
 <div class="info-desc">
 <p>Distribution point, consisting of an optional name, an optional list of

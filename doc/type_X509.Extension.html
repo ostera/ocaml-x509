@@ -70,11 +70,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">Unused</span>&nbsp;]<br>
 &nbsp;&nbsp;<span class="keyword">type</span>&nbsp;distribution_point_name&nbsp;=<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;<span class="keywordsign">`</span><span class="constructor">Full</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.<span class="constructor">Extension</span>.general_name&nbsp;list<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">Relative</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509_types</span>.distinguished_name&nbsp;]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="keywordsign">`</span><span class="constructor">Relative</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="constructor">X509</span>.distinguished_name&nbsp;]<br>
 &nbsp;&nbsp;<span class="keyword">type</span>&nbsp;distribution_point&nbsp;=<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">X509</span>.<span class="constructor">Extension</span>.distribution_point_name&nbsp;option&nbsp;*<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">X509</span>.<span class="constructor">Extension</span>.reason&nbsp;list&nbsp;option&nbsp;*<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">X509_types</span>.distinguished_name&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">X509</span>.<span class="constructor">Extension</span>.reason&nbsp;list&nbsp;option&nbsp;*&nbsp;<span class="constructor">X509</span>.distinguished_name&nbsp;option<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;crl_distribution_points&nbsp;:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">X509</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">X509</span>.<span class="constructor">Extension</span>.distribution_point&nbsp;list<br>
 &nbsp;&nbsp;<span class="keyword">type</span>&nbsp;reason_code&nbsp;=<br>
