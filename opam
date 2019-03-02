@@ -20,6 +20,7 @@ depends: [
   "ocamlfind" {build}
   "ocamlbuild" {build}
   "topkg" {build}
+  "ppx_deriving"
   "ppx_sexp_conv"
   "result"
   "cstruct" {>= "1.6.0"}
